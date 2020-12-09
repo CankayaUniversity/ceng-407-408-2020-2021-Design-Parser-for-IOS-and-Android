@@ -1,0 +1,19 @@
+<View style="background-color:#ff0000;">
+    <View style="background-color:#000000;">
+        <View>
+            <View>
+                <View>
+                    <Text style="background-color:#ffff00">extererere         </Text>
+                </View>
+            </View>
+        </View>
+        <Text style="background-color:#00ffff">sol sol text</Text>
+    </View>
+    <View>
+        <View>
+            <Text style="background-color:#ffa500">sol sag sol text</Text>
+        </View>
+        <Text style="background-color:#d2691e">bu sol sag text text</Text>
+    </View>
+    <Text style="background-color:#800080">sol text</Text>
+</View> 
