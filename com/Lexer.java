@@ -1,13 +1,9 @@
 package com;
 
-import java.util.List;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 import com.Views.Attribute;
-import com.Views.Text;
-import com.Views.View;
 
 import static com.TokenType.*;
 
@@ -17,20 +13,18 @@ public class Lexer {
     private int current;
     private int start;
     private int line;
-    private final List<Token> tokens = new ArrayList<>();
     private SyntaxTree syntaxTree = new SyntaxTree();
 
     Lexer(String source) {
         this.source = source;
     }
 
-    public List<Token> scanTokens() {
+    public void scanTokens() {
         while (!isAtEnd()) {
             this.start = this.current;
             this.scanToken();
         }
-        this.tokens.add(new Token(EOF, "", null, this.line));
-        return this.tokens;
+       
     }
 
     public void scanToken() {
@@ -65,38 +59,35 @@ public class Lexer {
         }
         if (this.isAtEnd())
             System.out.println("OUT OF RANGE BİLADER");
-        String val = this.source.substring(this.start, this.current);
-        TokenType m = keywords.get(val);
-        this.addToken(m);
+
+        String tokenType_val = this.source.substring(this.start, this.current);
+        TokenType tokenType = keywords.get(tokenType_val);
+        
+        Token token = new Token(tokenType, this.line);
+        Node node = new Node(token);
+
+        //read style properties
         Attribute attribute = new Attribute();
-        if (this.match(' ')) {
+        if (this.match(' ')) 
             attribute.setAtrribute(this.attributes());
-        }
-        if (m == VIEW) {
-            View view = new View();
-            if (attribute != null)
-                view.setAttribute(attribute);
-            if (syntaxTree.getRoot() == null)
-                syntaxTree.setRoot(view);
-            else {
-                syntaxTree.addCursor(view);
-            }
-        } else if (m == TEXT) {
-            Text text = new Text();
+           
+        if (tokenType == TokenType.TEXT) {
             this.start = this.current;
             while (this.peek() != '<' && !this.isAtEnd()) {
                 this.advance();
             }
             this.start++;
-            String s = this.source.substring(this.start, this.current);
-            attribute.addAttribute("text", s);
-            text.setAttribute(attribute);
-            if (syntaxTree.getRoot() == null)
-                syntaxTree.setRoot(text);
-            else {
-                syntaxTree.addCursor(text);
-            }
+            String text = this.source.substring(this.start, this.current);
+            attribute.addAttribute("text", text);
         }
+
+        if (attribute != null)
+            node.setAttribute(attribute);
+        if (syntaxTree.getRoot() == null)
+            syntaxTree.setRoot(node);
+        else
+            syntaxTree.addCursor(node);
+        
     }
 
     private String attributes() {
@@ -108,14 +99,6 @@ public class Lexer {
         return val;
     }
 
-    private void addToken(TokenType type) {
-        this.addToken(type, null);
-    }
-
-    private void addToken(TokenType type, Object literal) {
-        String text = this.source.substring(this.start, this.current);
-        this.tokens.add(new Token(type, text, literal, this.line));
-    }
 
     private boolean match(char expected) {
         if (this.isAtEnd())

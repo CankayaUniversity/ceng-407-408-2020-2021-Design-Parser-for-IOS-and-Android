@@ -10,7 +10,6 @@ public class Attribute {
 
     public Attribute() {
         this.keywords = new HashMap<>();
-
     }
 
     public void addAttribute(String key, String value) {

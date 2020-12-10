@@ -51,10 +51,7 @@ public class SyntaxTree {
                 this.java_source += "ll.setOrientation(LinearLayout.VERTICAL); \n";
                 temp_id = "ll";
                 current.setId(temp_id);
-            } else {
-                System.out.println("outututuututututuur34u5349tu34tu366t3u4590u6t3905u609u350uyt903u590yu9305uy903905");
-            }
-
+            } 
             System.out.println(current.getAttribute().getAttributes().toString());
 
             if (current.getAttribute().getAttributes().get("background-color") != null)
