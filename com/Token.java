@@ -3,6 +3,7 @@ package com;
 public class Token {
 
     private TokenType type;
+	//it will change
     private int line;
 
     public Token(TokenType type, int line) {
