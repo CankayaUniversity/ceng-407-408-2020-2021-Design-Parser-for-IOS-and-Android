@@ -3,8 +3,6 @@ package com;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.Views.Attribute;
-
 public class Node {
 
     private Token token;

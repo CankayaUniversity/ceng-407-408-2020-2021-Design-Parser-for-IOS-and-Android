@@ -3,8 +3,6 @@ package com;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.Views.Attribute;
-
 import static com.TokenType.*;
 
 public class Lexer {

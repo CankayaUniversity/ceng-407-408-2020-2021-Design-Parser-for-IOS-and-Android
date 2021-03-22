@@ -52,13 +52,13 @@ public class SyntaxTree {
                 temp_id = "ll";
                 current.setId(temp_id);
             } 
-            System.out.println(current.getAttribute().getAttributes().toString());
+            System.out.println(current.getAttribute().getKeywords().toString());
 
-            if (current.getAttribute().getAttributes().get("background-color") != null)
+            if (current.getAttribute().getKeywords().get("background-color") != null)
                 this.java_source += current.getId() + ".setBackgroundColor(Color.parseColor(" + "\""
-                        + current.getAttribute().getAttributes().get("background-color") + "\"" + ")); \n";
-            if (current.getAttribute().getAttributes().get("text") != null)
-                this.java_source += current.getId() + ".setText(" + current.getAttribute().getAttributes().get("text")
+                        + current.getAttribute().getKeywords().get("background-color") + "\"" + ")); \n";
+            if (current.getAttribute().getKeywords().get("text") != null)
+                this.java_source += current.getId() + ".setText(" + current.getAttribute().getKeywords().get("text")
                         + "); \n";
 
             rec(current);
@@ -85,16 +85,16 @@ public class SyntaxTree {
                 current.getChildren().get(i).setId(current.getId() + "_" + i);
             }
 
-            System.out.print(current.getChildren().get(i).getAttribute().getAttributes().toString());
+            System.out.print(current.getChildren().get(i).getAttribute().getKeywords().toString());
 
-            if (current.getChildren().get(i).getAttribute().getAttributes().get("background-color") != null)
+            if (current.getChildren().get(i).getAttribute().getKeywords().get("background-color") != null)
                 this.java_source += current.getChildren().get(i).getId() + ".setBackgroundColor(Color.parseColor("
-                        + "\"" + current.getChildren().get(i).getAttribute().getAttributes().get("background-color")
+                        + "\"" + current.getChildren().get(i).getAttribute().getKeywords().get("background-color")
                         + "\"" + ")); \n";
 
-            if (current.getChildren().get(i).getAttribute().getAttributes().get("text") != null)
+            if (current.getChildren().get(i).getAttribute().getKeywords().get("text") != null)
                 this.java_source += current.getChildren().get(i).getId() + ".setText(" + "\""
-                        + current.getChildren().get(i).getAttribute().getAttributes().get("text") + "\"" + "); \n";
+                        + current.getChildren().get(i).getAttribute().getKeywords().get("text") + "\"" + "); \n";
 
             this.java_source += current.getId() + ".addView(" + current.getChildren().get(i).getId() + "); \n";
         }
@@ -110,7 +110,7 @@ public class SyntaxTree {
         if (current != null) {
             System.out.print("\n" + current.getToken().getTokenType() + " ::: ");
             if (current.getAttribute() != null) {
-                System.out.print(current.getAttribute().getAttributes().toString());
+                System.out.print(current.getAttribute().getKeywords().toString());
 
                 // this.source = "LinearLayout ll = findViewById(R.id.idsi);";
             }
@@ -124,7 +124,7 @@ public class SyntaxTree {
         for (int i = 0; i < current.getChildren().size(); i++) {
             System.out.print("\n" + current.getChildren().get(i).getToken().getTokenType() + " ::: ");
             if (current.getChildren().get(i).getAttribute() != null) {
-                System.out.print(current.getChildren().get(i).getAttribute().getAttributes().toString());
+                System.out.print(current.getChildren().get(i).getAttribute().getKeywords().toString());
                 if (current.getChildren().get(i).getToken().getTokenType() == TEXT) {
 
                     /*

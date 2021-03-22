@@ -1,4 +1,4 @@
-package com.Views;
+package com;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -27,7 +27,7 @@ public class Attribute {
         }
     }
 
-    public Map<String, String> getAttributes() {
+    public Map<String, String> getKeywords() {
         return this.keywords;
     }
 

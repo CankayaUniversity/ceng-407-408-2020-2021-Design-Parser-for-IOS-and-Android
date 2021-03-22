@@ -17,4 +17,12 @@ public class Token {
     public void setTokenType(TokenType type){
         this.type = type;
     }
+
+    public int getLine() {
+        return this.line;
+    }
+
+    public void setLine(int line){
+        this.line = line;
+    }
 }
