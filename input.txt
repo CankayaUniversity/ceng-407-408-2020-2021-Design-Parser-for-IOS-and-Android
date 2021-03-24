@@ -12,6 +12,7 @@
     <View>
         <View>
             <Text style="background-color:#ffa500">sol sag sol text</Text>
+    	    <Text style="background-color:#ffa500">sol sag sol text</Text>
         </View>
         <Text style="background-color:#d2691e">bu sol sag text text</Text>
     </View>
