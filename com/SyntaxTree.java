@@ -75,18 +75,11 @@ public class SyntaxTree {
         Node current = node;
 
         for (int i = 0; i < current.getChildren().size(); i++) {
-            System.out.print("\n" + current.getChildren().get(i).getToken().getTokenType() + " ::: ");
+            AndroidMapToken amp = new AndroidMapToken();
+            this.java_source += amp.ToString(current.getChildren().get(i), current.getId(), i);
+            
 
-            if (current.getChildren().get(i).getToken().getTokenType() == VIEW) {
-                this.java_source += "LinearLayout " + current.getId() + "_" + i + " = new LinearLayout(this); \n";
-                current.getChildren().get(i).setId(current.getId() + "_" + i);
-            } else if (current.getChildren().get(i).getToken().getTokenType() == TEXT) {
-                this.java_source += "TextView " + current.getId() + "_" + i + " = new TextView(this); \n";
-                current.getChildren().get(i).setId(current.getId() + "_" + i);
-            }
-
-            System.out.print(current.getChildren().get(i).getAttribute().getKeywords().toString());
-
+            //AndroidMapToken gibi AndroidMapAttribute içinde yapılacak.
             if (current.getChildren().get(i).getAttribute().getKeywords().get("background-color") != null)
                 this.java_source += current.getChildren().get(i).getId() + ".setBackgroundColor(Color.parseColor("
                         + "\"" + current.getChildren().get(i).getAttribute().getKeywords().get("background-color")

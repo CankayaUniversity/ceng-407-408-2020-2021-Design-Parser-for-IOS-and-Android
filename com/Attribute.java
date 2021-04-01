@@ -22,6 +22,7 @@ public class Attribute {
         String s = this.atrbt_source.split("\"")[1];
 
         for (String m : s.split(";")) {
+            System.out.println(m);
             String[] x = m.split(":");
             keywords.put(x[0], x[1]);
         }

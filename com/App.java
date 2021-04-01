@@ -12,8 +12,6 @@ public class App {
         Lexer lex = new Lexer(source);
         lex.scanTokens();
 
-        lex.getSyntaxTree();
-
         lex.getSyntaxTree().walk();
     }
 }
