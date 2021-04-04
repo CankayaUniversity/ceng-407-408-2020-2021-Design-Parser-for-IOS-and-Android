@@ -8,12 +8,15 @@ public class SyntaxTree {
     private Node root;
     private Stack<Node> cursor = new Stack<>();
     private String java_source;
+    private String ios_source;
     private String temp_id;
+    private IosMapAttribute iosMapAttribute;
+    private IosMapToken iosMapToken;
 
     SyntaxTree() {
-
         this.root = null;
-
+        this.iosMapAttribute =  new IosMapAttribute();
+        this.iosMapToken =  new IosMapToken();
     }
 
     public void setRoot(Node root) {
@@ -31,7 +34,6 @@ public class SyntaxTree {
 
     // push cursor to stack and add node to tree
     public void addCursor(Node c) {
-
         this.cursor.peek().addNode(c);
         this.cursor.push(c);
     }
@@ -44,41 +46,53 @@ public class SyntaxTree {
         Node current = root;
 
         if (current != null) {
-            System.out.print("\n" + current.getToken().getTokenType() + " ::: ");
-
-            if (current.getToken().getTokenType() == VIEW) {
+        	if (current.getToken().getTokenType() == VIEW) {
+        		//these are for ios and android soruce code starting tags.
                 this.java_source = "LinearLayout ll = new LinearLayout(this); \n";
                 this.java_source += "ll.setOrientation(LinearLayout.VERTICAL); \n";
+ 
+                if (current.getAttribute().getKeywords().get("background-color") != null)
+                    this.java_source += current.getId() + ".setBackgroundColor(Color.parseColor(" + "\""
+                            + current.getAttribute().getKeywords().get("background-color") + "\"" + ")); \n";
+                if (current.getAttribute().getKeywords().get("text") != null)
+                    this.java_source += current.getId() + ".setText(" + current.getAttribute().getKeywords().get("text")
+                            + "); \n";
+                
+                androidWalker(current);
+                
+                this.ios_source = "VStack{";
+
+                iosWalker(current);
+                
                 temp_id = "ll";
                 current.setId(temp_id);
-            } 
-            System.out.println(current.getAttribute().getKeywords().toString());
+            }
 
-            if (current.getAttribute().getKeywords().get("background-color") != null)
-                this.java_source += current.getId() + ".setBackgroundColor(Color.parseColor(" + "\""
-                        + current.getAttribute().getKeywords().get("background-color") + "\"" + ")); \n";
-            if (current.getAttribute().getKeywords().get("text") != null)
-                this.java_source += current.getId() + ".setText(" + current.getAttribute().getKeywords().get("text")
-                        + "); \n";
-
-            rec(current);
-
+            //these are for end of android and ios source code closing tags.
             this.java_source += "LinearLayout general = findViewById(R.id.general);\n";
             this.java_source += "general.setOrientation(LinearLayout.VERTICAL);\n";
             this.java_source += "general.addView(ll);\n";
 
+            this.ios_source += "} \n";
+    
+            //Print for fast test
+            System.out.println("*****************************************");
             System.out.println(this.java_source);
+            System.out.println("*****************************************");
+            System.out.println(this.ios_source);
+            
+            FileProcessing.createFolder();
+            FileProcessing.createFileAndWrite("Ios", ios_source);
         }
     }
 
-    public void rec(Node node) {
+    public void androidWalker(Node node) {
         Node current = node;
 
         for (int i = 0; i < current.getChildren().size(); i++) {
             AndroidMapToken amp = new AndroidMapToken();
             this.java_source += amp.ToString(current.getChildren().get(i), current.getId(), i);
             
-
             //AndroidMapToken gibi AndroidMapAttribute içinde yapılacak.
             if (current.getChildren().get(i).getAttribute().getKeywords().get("background-color") != null)
                 this.java_source += current.getChildren().get(i).getId() + ".setBackgroundColor(Color.parseColor("
@@ -89,12 +103,38 @@ public class SyntaxTree {
                 this.java_source += current.getChildren().get(i).getId() + ".setText(" + "\""
                         + current.getChildren().get(i).getAttribute().getKeywords().get("text") + "\"" + "); \n";
 
+            
             this.java_source += current.getId() + ".addView(" + current.getChildren().get(i).getId() + "); \n";
+            
         }
+        
         for (int i = 0; i < current.getChildren().size(); i++) {
-            if (current.getChildren().get(i).getChildren().size() > 0)
-                rec(current.getChildren().get(i));
+            if (current.getChildren().get(i).getChildren().size() > 0) {
+            	androidWalker(current.getChildren().get(i));                 
+            }
         }
+    }
+    
+    public void iosWalker(Node node) {
+    	Node current = node;
+    	
+    	for(int i=0; i<current.getChildren().size(); i++) {
+    		System.out.print("\n" + current.getChildren().get(i).getToken().getTokenType() + " ::: ");
+    
+            this.ios_source += this.iosMapToken.toString(current.getChildren().get(i), current.getId(), i);
+            
+            //this for ios text beacuse it should be like that Text("text inside") and its attributes.
+            if(current.getChildren().get(i).getAttribute().getKeywords().get("text") != null)
+            	this.ios_source += "\""+ current.getChildren().get(i).getAttribute().getKeywords().get("text")+"\") ";
+
+           
+            this.iosWalker(current.getChildren().get(i));
+    		
+    		if(current.getChildren().get(i).getToken().getTokenType() == VIEW)
+            	this.ios_source += "} \n";
+    		    		
+            this.ios_source += this.iosMapAttribute.toString(current.getChildren().get(i), current.getId(), i);
+    	}
     }
 
     public void walk_print() {
@@ -102,22 +142,22 @@ public class SyntaxTree {
 
         if (current != null) {
             System.out.print("\n" + current.getToken().getTokenType() + " ::: ");
-            if (current.getAttribute() != null) {
+            if (current.getAttribute() != null)
                 System.out.print(current.getAttribute().getKeywords().toString());
-
-                // this.source = "LinearLayout ll = findViewById(R.id.idsi);";
-            }
-            rec_print(current);
+            
+            walkersPrint(current);
         }
     }
 
-    public void rec_print(Node node) {
+    public void walkersPrint(Node node) {
         Node current = node;
 
         for (int i = 0; i < current.getChildren().size(); i++) {
-            System.out.print("\n" + current.getChildren().get(i).getToken().getTokenType() + " ::: ");
+        	
+        	//System.out.print("\n" + current.getChildren().get(i).getToken().getTokenType() + " ::: ");
             if (current.getChildren().get(i).getAttribute() != null) {
-                System.out.print(current.getChildren().get(i).getAttribute().getKeywords().toString());
+            	
+            	//System.out.print(current.getChildren().get(i).getAttribute().getKeywords().toString());
                 if (current.getChildren().get(i).getToken().getTokenType() == TEXT) {
 
                     /*
@@ -134,11 +174,7 @@ public class SyntaxTree {
         }
         for (int i = 0; i < current.getChildren().size(); i++) {
             if (current.getChildren().get(i).getChildren().size() > 0)
-                rec_print(current.getChildren().get(i));
+            	walkersPrint(current.getChildren().get(i));
         }
-    }
-
-    public void putTokens(Node now_node) {
-
     }
 }

@@ -1,0 +1,25 @@
+VStack{
+	VStack{
+
+	VStack{
+Text() 
+
+	VStack{
+Text() 
+
+	VStack{
+
+	VStack{
+Text() 
+} 
+} 
+} 
+} 
+
+	VStack{
+Text() 
+Text() 
+Text() 
+} 
+} 
+} 

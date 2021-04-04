@@ -1,0 +1,26 @@
+VStack{
+	VStack{
+
+	VStack{
+
+	VStack{
+
+	VStack{
+Text("extererere         ") .background(#ffff00)
+.foregroundColor(. #ffffff)
+} 
+} 
+} 
+Text("sol sol text") .background(#00ffff)
+} 
+.background(#000000)
+
+	VStack{
+
+	VStack{
+Text("sol sag sol text") .background(#ffa500)
+Text("sol sag sol text") .background(#ffa500)
+} 
+Text("bu sol sag text text") .background(#d2691e)
+} 
+} 

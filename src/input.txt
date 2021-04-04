@@ -3,7 +3,7 @@
         <View>
             <View>
                 <View>
-                    <Text style="background-color:#ffff00">extererere         </Text>
+                    <Text style="background-color:#ffff00;color: #ffffff;">extererere         </Text>
                 </View>
             </View>
         </View>
@@ -16,5 +16,4 @@
         </View>
         <Text style="background-color:#d2691e">bu sol sag text text</Text>
     </View>
-    <Text style="background-color:#800080">sol text</Text>
 </View> 
