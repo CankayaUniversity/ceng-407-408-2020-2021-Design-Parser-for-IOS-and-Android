@@ -3,7 +3,7 @@
         <View>
             <View>
                 <View>
-                    <Text style="background-color:#ffff00;color: #ffffff;">extererere         </Text>
+                    <Text style="background-color:#ffff00;text-color: #ffffff;">extererere         </Text>
                 </View>
             </View>
         </View>

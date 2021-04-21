@@ -1,10 +1,7 @@
 package com;
 
-import static com.TokenType.*;
-
 import java.util.HashMap;
 import java.util.Map;
-import java.util.List;
 
 public class IosMapAttribute {
 	private static final Map<String, String> keywords;

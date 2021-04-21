@@ -50,6 +50,9 @@ public class SyntaxTree {
         		//these are for ios and android soruce code starting tags.
                 this.java_source = "LinearLayout ll = new LinearLayout(this); \n";
                 this.java_source += "ll.setOrientation(LinearLayout.VERTICAL); \n";
+                
+                temp_id = "ll";
+                current.setId(temp_id);
  
                 if (current.getAttribute().getKeywords().get("background-color") != null)
                     this.java_source += current.getId() + ".setBackgroundColor(Color.parseColor(" + "\""
@@ -63,9 +66,6 @@ public class SyntaxTree {
                 this.ios_source = "VStack{";
 
                 iosWalker(current);
-                
-                temp_id = "ll";
-                current.setId(temp_id);
             }
 
             //these are for end of android and ios source code closing tags.
@@ -81,8 +81,8 @@ public class SyntaxTree {
             System.out.println("*****************************************");
             System.out.println(this.ios_source);
             
-            FileProcessing.createFolder();
-            FileProcessing.createFileAndWrite("Ios", ios_source);
+            FileProcessing.GetInstance().createFolder();
+            FileProcessing.GetInstance().createFileAndWrite("Ios", ios_source);
         }
     }
 
@@ -94,6 +94,7 @@ public class SyntaxTree {
             this.java_source += amp.ToString(current.getChildren().get(i), current.getId(), i);
             
             //AndroidMapToken gibi AndroidMapAttribute içinde yapılacak.
+            /*
             if (current.getChildren().get(i).getAttribute().getKeywords().get("background-color") != null)
                 this.java_source += current.getChildren().get(i).getId() + ".setBackgroundColor(Color.parseColor("
                         + "\"" + current.getChildren().get(i).getAttribute().getKeywords().get("background-color")
@@ -104,8 +105,7 @@ public class SyntaxTree {
                         + current.getChildren().get(i).getAttribute().getKeywords().get("text") + "\"" + "); \n";
 
             
-            this.java_source += current.getId() + ".addView(" + current.getChildren().get(i).getId() + "); \n";
-            
+            this.java_source += current.getId() + ".addView(" + current.getChildren().get(i).getId() + "); \n";*/
         }
         
         for (int i = 0; i < current.getChildren().size(); i++) {
@@ -135,46 +135,5 @@ public class SyntaxTree {
     		    		
             this.ios_source += this.iosMapAttribute.toString(current.getChildren().get(i), current.getId(), i);
     	}
-    }
-
-    public void walk_print() {
-        Node current = root;
-
-        if (current != null) {
-            System.out.print("\n" + current.getToken().getTokenType() + " ::: ");
-            if (current.getAttribute() != null)
-                System.out.print(current.getAttribute().getKeywords().toString());
-            
-            walkersPrint(current);
-        }
-    }
-
-    public void walkersPrint(Node node) {
-        Node current = node;
-
-        for (int i = 0; i < current.getChildren().size(); i++) {
-        	
-        	//System.out.print("\n" + current.getChildren().get(i).getToken().getTokenType() + " ::: ");
-            if (current.getChildren().get(i).getAttribute() != null) {
-            	
-            	//System.out.print(current.getChildren().get(i).getAttribute().getKeywords().toString());
-                if (current.getChildren().get(i).getToken().getTokenType() == TEXT) {
-
-                    /*
-                     * this.source += "\nTextView tw = new TextView(this);"; Map a =
-                     * current.getChildren().get(i).getAttribute().getAttributes(); if
-                     * (a.get("background-color") != null) { this.source +=
-                     * "\n tw.setBackgroundColor(Color.Parse(" + a.get("background-color") + "));";
-                     * } if (a.get("width") != null) this.source += "\n tw.setWidth(" +
-                     * a.get("width") + ");"; this.source += "\n ll.addView(tw);";
-                     * System.out.println("\n" + this.source);
-                     */
-                }
-            }
-        }
-        for (int i = 0; i < current.getChildren().size(); i++) {
-            if (current.getChildren().get(i).getChildren().size() > 0)
-            	walkersPrint(current.getChildren().get(i));
-        }
     }
 }

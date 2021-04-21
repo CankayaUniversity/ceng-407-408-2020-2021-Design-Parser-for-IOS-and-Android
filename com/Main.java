@@ -2,7 +2,7 @@ package com;
 
 public class Main {
     public static void main(String[] args) {
-    	FileProcessing fileRead = new FileProcessing();
+    	FileProcessing fileRead = FileProcessing.GetInstance();
         String source = fileRead.read("html_input.html");
         Lexer lexer = new Lexer(source);
         lexer.scanTokens();

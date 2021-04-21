@@ -85,7 +85,6 @@ public class Lexer {
             syntaxTree.setRoot(node);
         else
             syntaxTree.addCursor(node);
-        
     }
 
     private String attributes() {

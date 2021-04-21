@@ -1,5 +1,43 @@
 package com;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class AndroidMapAttribute{
 
+    private static class BracketCounter{
+        private String str;
+        private int bracketCount;
+        public BracketCounter(String str, int bracketCount){
+            this.str = str;
+            this.bracketCount = bracketCount;
+        }
+
+        public String RepeatBrackets(){
+            String brackets = "";
+            for(int i = 0; i < bracketCount; i++)
+                brackets += ")";
+            return brackets;
+        }
+    }
+
+    private static final HashMap<String, BracketCounter> keywords;
+    static {
+        keywords = new HashMap<>();
+        keywords.put("background-color" , new BracketCounter("setBackgroundColor(Color.parseColor(", 2));
+        keywords.put("text" , new BracketCounter("setText(", 1));
+        keywords.put("text-color" , new BracketCounter("setTextColor(Color.parseColor(", 2));
+    }
+   
+    public String ToString(Node node){
+        String str = "";
+        for(Map.Entry<String, String> pair : node.getAttribute().getKeywords().entrySet()){
+            System.out.println("Pair: " + pair.getKey() + " - " + pair.getValue());
+            str += node.getId() + "." + keywords.get(pair.getKey()).str + "\"" + pair.getValue() + "\"";
+            str += keywords.get(pair.getKey()).RepeatBrackets();
+            str += "\n";
+        }
+
+        return str;
+    }
 }

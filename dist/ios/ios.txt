@@ -7,7 +7,6 @@ VStack{
 
 	VStack{
 Text("extererere         ") .background(#ffff00)
-.foregroundColor(. #ffffff)
 } 
 } 
 } 
