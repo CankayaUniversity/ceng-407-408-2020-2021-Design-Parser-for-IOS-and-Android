@@ -10,16 +10,6 @@ import java.util.Scanner; // Import the Scanner class to read text files
 public class FileProcessing {
 
 	private static FileProcessing instance;
-
-    // static method to create instance of Singleton class
-    public static FileProcessing GetInstance()
-    {
-        if (instance == null)
-            instance = new FileProcessing();
-  
-        return instance;
-    }
-
 	private  String directoryPath;
 	private  String androidFolder;
 	private String iosFolder;
@@ -29,6 +19,14 @@ public class FileProcessing {
 		androidFolder = "";
 		iosFolder = "";
    	} 
+	
+    // static method to create instance of Singleton class
+    public static FileProcessing GetInstance(){
+        if (instance == null)
+            instance = new FileProcessing();
+  
+        return instance;
+    }
 
     public String read(String fileName){
       String txt = "";
@@ -58,7 +56,6 @@ public class FileProcessing {
         folderPath.mkdir();
         
         createPlatformFolders(folderPath.toString());
-        	
     }
     
     private void createPlatformFolders(String distFolder) {
@@ -83,7 +80,6 @@ public class FileProcessing {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-    		
     	}
     	else if(platform.equals("Android")) {
     		

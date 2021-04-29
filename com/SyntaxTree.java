@@ -3,7 +3,7 @@ package com;
 import java.util.Stack;
 import static com.TokenType.*;
 
-public class SyntaxTree {
+public class SyntaxTree implements Runnable {
 
     private Node root;
     private Stack<Node> cursor = new Stack<>();
@@ -57,6 +57,7 @@ public class SyntaxTree {
                 if (current.getAttribute().getKeywords().get("background-color") != null)
                     this.java_source += current.getId() + ".setBackgroundColor(Color.parseColor(" + "\""
                             + current.getAttribute().getKeywords().get("background-color") + "\"" + ")); \n";
+                
                 if (current.getAttribute().getKeywords().get("text") != null)
                     this.java_source += current.getId() + ".setText(" + current.getAttribute().getKeywords().get("text")
                             + "); \n";
@@ -136,4 +137,11 @@ public class SyntaxTree {
             this.ios_source += this.iosMapAttribute.toString(current.getChildren().get(i), current.getId(), i);
     	}
     }
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
+		
+	}
 }

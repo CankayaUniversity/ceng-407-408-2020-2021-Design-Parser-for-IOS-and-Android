@@ -7,7 +7,6 @@ public class Main {
         Lexer lexer = new Lexer(source);
         lexer.scanTokens();
         lexer.getSyntaxTree().walk();
-    }
-        
+    }    
 }
 
