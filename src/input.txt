@@ -10,8 +10,8 @@
         <Text style="background-color:#00ffff">sol sol text</Text>
     </View>
     <View>
-        <View>
-            <Text style="background-color:#ffa500">sol sag sol text</Text>
+        <View style="gravity:top;orientation:vertical;">
+            <Text style="background-color:#ffa500;text-color: #ffffff;width: 100px;height: 120px;">sol sag sol text</Text>
     	    <Text style="background-color:#ffa500">sol sag sol text</Text>
         </View>
         <Text style="background-color:#d2691e">bu sol sag text text</Text>

@@ -120,7 +120,7 @@ public class SyntaxTree implements Runnable {
     	Node current = node;
     	
     	for(int i=0; i<current.getChildren().size(); i++) {
-    		System.out.print("\n" + current.getChildren().get(i).getToken().getTokenType() + " ::: ");
+    		//System.out.print("\n" + current.getChildren().get(i).getToken().getTokenType() + " ::: ");
     
             this.ios_source += this.iosMapToken.toString(current.getChildren().get(i), current.getId(), i);
             
@@ -131,7 +131,7 @@ public class SyntaxTree implements Runnable {
            
             this.iosWalker(current.getChildren().get(i));
     		
-    		if(current.getChildren().get(i).getToken().getTokenType() == VIEW)
+    		if(current.getChildren().get(i).getToken().getTokenType() == VIEW || current.getChildren().get(i).getToken().getTokenType() == VIEW_H )
             	this.ios_source += "} \n";
     		    		
             this.ios_source += this.iosMapAttribute.toString(current.getChildren().get(i), current.getId(), i);

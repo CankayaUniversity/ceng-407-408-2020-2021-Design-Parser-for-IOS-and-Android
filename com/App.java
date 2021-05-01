@@ -17,7 +17,7 @@ public class App {
         
         Map<String, List<String>> a = App.readFlags(args);
         for(Map.Entry<String, List<String>> entry  : a.entrySet()) {
-        	
+        	/*
         	System.out.println(entry.getKey() + " : ");
         	if(entry.getKey().equals("d")) {
         		for(String option : entry.getValue()) {
@@ -29,7 +29,7 @@ public class App {
             	}
         	}
         	
-        	System.out.println();
+        	System.out.println();*/
         }
     }
     
