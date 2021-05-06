@@ -6,3 +6,11 @@
 /SyntaxTree.class
 /Token.class
 /TokenType.class
+/AndroidMapAttribute$BracketCounter.class
+/AndroidMapAttribute.class
+/AndroidMapToken.class
+/Attribute.class
+/FileProcessing.class
+/IosMapAttribute.class
+/IosMapToken.class
+/Main.class

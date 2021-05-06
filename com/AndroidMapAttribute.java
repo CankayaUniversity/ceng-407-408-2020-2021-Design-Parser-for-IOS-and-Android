@@ -27,17 +27,15 @@ public class AndroidMapAttribute{
         keywords.put("background-color" , new BracketCounter("setBackgroundColor(Color.parseColor(", 2));
         keywords.put("text" , new BracketCounter("setText(", 1));
         keywords.put("text-color" , new BracketCounter("setTextColor(Color.parseColor(", 2));
-     //
-        keywords.put("gravity" , new BracketCounter("setGravity(", 2));
-        keywords.put("width" , new BracketCounter("setWidth(", 2));
-        keywords.put("height" , new BracketCounter("setWidth(", 2));
-        keywords.put("orientation" , new BracketCounter("setOrientation(", 2));
+        keywords.put("gravity" , new BracketCounter("setGravity(GRAVITY.", 1));
+        keywords.put("width" , new BracketCounter("setWidth(", 1));
+        keywords.put("height" , new BracketCounter("setWidth(", 1));
+        keywords.put("orientation" , new BracketCounter("setOrientation(", 1));
     }
    
     public String ToString(Node node){
         String str = "";
         for(Map.Entry<String, String> pair : node.getAttribute().getKeywords().entrySet()){
-            System.out.println("Pair: " + pair.getKey() + " - " + pair.getValue());
             str += node.getId() + "." + keywords.get(pair.getKey()).str + "\"" + pair.getValue() + "\"";
             str += keywords.get(pair.getKey()).RepeatBrackets();
             str += "\n";

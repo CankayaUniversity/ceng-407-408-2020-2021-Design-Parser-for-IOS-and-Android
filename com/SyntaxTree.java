@@ -93,21 +93,7 @@ public class SyntaxTree implements Runnable {
         for (int i = 0; i < current.getChildren().size(); i++) {
             AndroidMapToken amp = new AndroidMapToken();
             this.java_source += amp.ToString(current.getChildren().get(i), current.getId(), i);
-            
-            //AndroidMapToken gibi AndroidMapAttribute içinde yapılacak.
-            /*
-            if (current.getChildren().get(i).getAttribute().getKeywords().get("background-color") != null)
-                this.java_source += current.getChildren().get(i).getId() + ".setBackgroundColor(Color.parseColor("
-                        + "\"" + current.getChildren().get(i).getAttribute().getKeywords().get("background-color")
-                        + "\"" + ")); \n";
-
-            if (current.getChildren().get(i).getAttribute().getKeywords().get("text") != null)
-                this.java_source += current.getChildren().get(i).getId() + ".setText(" + "\""
-                        + current.getChildren().get(i).getAttribute().getKeywords().get("text") + "\"" + "); \n";
-
-            
-            this.java_source += current.getId() + ".addView(" + current.getChildren().get(i).getId() + "); \n";*/
-        }
+    }
         
         for (int i = 0; i < current.getChildren().size(); i++) {
             if (current.getChildren().get(i).getChildren().size() > 0) {
