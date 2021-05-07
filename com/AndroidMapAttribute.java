@@ -24,28 +24,30 @@ public class AndroidMapAttribute{
     private static final HashMap<String, BracketCounter> keywords;
     static {
         keywords = new HashMap<>();
-        //View
-        keywords.put("View_background-color" , new BracketCounter("setBackgroundColor(Color.parseColor(", 2));
-        keywords.put("View_gravity" , new BracketCounter("setGravity(GRAVITY.", 1));
-        keywords.put("View_width" , new BracketCounter("getLayoutParams().height = ", 0));
-        keywords.put("View_height" , new BracketCounter("getLayoutParams().width = ", 0));
-        keywords.put("View_orientation" , new BracketCounter("setOrientation(LinearLayout.", 1));
+        //VIEW
+        keywords.put("VIEW_background-color" , new BracketCounter("setBackgroundColor(Color.parseColor(", 2));
+        keywords.put("VIEW_gravity" , new BracketCounter("setGravity(GRAVITY.", 1));
+        keywords.put("VIEW_width" , new BracketCounter("getLayoutParams().width = ", 1));
+        keywords.put("VIEW_height" , new BracketCounter("getLayoutParams().height = ", 1));
+        keywords.put("VIEW_orientation" , new BracketCounter("setOrientation(LinearLayout.", 1));
         
-        //Text
-        keywords.put("Text_background-color" , new BracketCounter("setBackgroundColor(Color.parseColor(", 2));
-        keywords.put("Text_gravity" , new BracketCounter("setGravity(GRAVITY.", 1));
-        keywords.put("Text_width" , new BracketCounter("setWidth(", 1));
-        keywords.put("Text_height" , new BracketCounter("setWidth(", 1));
-        keywords.put("Text_text" , new BracketCounter("setText(", 1));
-        keywords.put("Text_text-color" , new BracketCounter("setTextColor(Color.parseColor(", 2));
+        //TEXT
+        keywords.put("TEXT_background-color" , new BracketCounter("setBackgroundColor(Color.parseColor(", 2));
+        keywords.put("TEXT_text" , new BracketCounter("setText(", 1));
+        keywords.put("TEXT_text-color" , new BracketCounter("setTextColor(Color.parseColor(", 2));
+        keywords.put("TEXT_gravity" , new BracketCounter("setGravity(GRAVITY.", 1));
+        keywords.put("TEXT_width" , new BracketCounter("getLayoutParams().width = ", 1));
+        keywords.put("TEXT_height" , new BracketCounter("getLayoutParams().height = ", 1));
     }
    
     public String ToString(Node node){
         String str = "";
         for(Map.Entry<String, String> pair : node.getAttribute().getKeywords().entrySet()){
-            str += node.getId() + "." + keywords.get(pair.getKey()).str + "\"" + pair.getValue() + "\"";
-            str += keywords.get(pair.getKey()).RepeatBrackets();
-            str += "\n";
+        	if(keywords.get(node.getToken().getTokenType() + "_" + pair.getKey()) != null) {
+                str += node.getId() + "." + keywords.get(node.getToken().getTokenType() + "_" + pair.getKey()).str + "\"" + pair.getValue() + "\"";
+                str += keywords.get(node.getToken().getTokenType() + "_" + pair.getKey()).RepeatBrackets();
+                str += "\n";
+        	}
         }
 
         return str;
