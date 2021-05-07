@@ -65,11 +65,18 @@ public class IosMapToken {
 			//Stacks should start their body with '{'
 			str += "{\n";	
 		}
+		//Ex text layout
+		//Text("value").foregroundColor(...)...
+		else if(node.getToken().getTokenType() == TEXT) {
+			str += "\n\t"+keywords.get(TEXT);
+			str +=  "(\""+node.getAttribute().getKeywords().get("text")+"\") ";
+		}
 		else
 			//other tokens should start '('
-			//Ex text layout
-			//Text("value").foregroundColor(...)...
 			str += keywords.get(node.getToken().getTokenType())+"(";
+	       //this for ios text beacuse it should be like that Text("text inside") and its attributes.
+       
+        	
 		
 		node.setId(parentID + "_" + indexOfChildhood) ;
 				

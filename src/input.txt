@@ -1,4 +1,4 @@
-<View style="background-color:#ff0000;">
+<View style="background-color:#ff0000;width: 50px;">
     <View style="background-color:#000000;">
         <View>
             <View>
@@ -10,10 +10,10 @@
         <Text style="background-color:#00ffff">sol sol text</Text>
     </View>
     <View>
-        <View style="gravity:top;orientation:vertical;">
+        <View style="alignment:top;orientation:horizontal;width: 300px;height: 200px;">
             <Text style="background-color:#ffa500;text-color: #ffffff;width: 100px;height: 120px;">sol sag sol text</Text>
-    	    <Text style="background-color:#ffa500">sol sag sol text</Text>
+    	    <Text style="background-color:#ffa500;">sol sag sol text</Text>
         </View>
-        <Text style="background-color:#d2691e">bu sol sag text text</Text>
+        <Text style="background-color:#d2691e;minWidth:200;width:100;">bu sol sag text text</Text>
     </View>
 </View> 

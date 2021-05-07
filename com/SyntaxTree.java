@@ -62,11 +62,12 @@ public class SyntaxTree implements Runnable {
                     this.java_source += current.getId() + ".setText(" + current.getAttribute().getKeywords().get("text")
                             + "); \n";
                 
-                androidWalker(current);
+                //androidWalker(current);
                 
                 this.ios_source = "VStack{";
 
                 iosWalker(current);
+                
             }
 
             //these are for end of android and ios source code closing tags.
@@ -75,7 +76,8 @@ public class SyntaxTree implements Runnable {
             this.java_source += "general.addView(ll);\n";
 
             this.ios_source += "} \n";
-    
+            this.ios_source += this.iosMapAttribute.toString(current, current.getId(),0);
+
             //Print for fast test
             System.out.println("*****************************************");
             System.out.println(this.java_source);
@@ -109,12 +111,7 @@ public class SyntaxTree implements Runnable {
     		//System.out.print("\n" + current.getChildren().get(i).getToken().getTokenType() + " ::: ");
     
             this.ios_source += this.iosMapToken.toString(current.getChildren().get(i), current.getId(), i);
-            
-            //this for ios text beacuse it should be like that Text("text inside") and its attributes.
-            if(current.getChildren().get(i).getAttribute().getKeywords().get("text") != null)
-            	this.ios_source += "\""+ current.getChildren().get(i).getAttribute().getKeywords().get("text")+"\") ";
 
-           
             this.iosWalker(current.getChildren().get(i));
     		
     		if(current.getChildren().get(i).getToken().getTokenType() == VIEW || current.getChildren().get(i).getToken().getTokenType() == VIEW_H )
