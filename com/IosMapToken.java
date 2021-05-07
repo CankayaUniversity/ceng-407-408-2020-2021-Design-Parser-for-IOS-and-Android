@@ -67,6 +67,8 @@ public class IosMapToken {
 		}
 		else
 			//other tokens should start '('
+			//Ex text layout
+			//Text("value").foregroundColor(...)...
 			str += keywords.get(node.getToken().getTokenType())+"(";
 		
 		node.setId(parentID + "_" + indexOfChildhood) ;
