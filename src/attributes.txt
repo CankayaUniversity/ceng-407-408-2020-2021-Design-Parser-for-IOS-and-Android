@@ -1,0 +1,9 @@
+//Attributes of all elements listed
+
+View:
+width
+height
+background
+gravity
+minHeight
+minWidth
