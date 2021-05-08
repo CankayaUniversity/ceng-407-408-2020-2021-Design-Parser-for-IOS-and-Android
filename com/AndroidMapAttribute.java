@@ -34,10 +34,20 @@ public class AndroidMapAttribute{
         //TEXT
         keywords.put("TEXT_background-color" , new BracketCounter("setBackgroundColor(Color.parseColor(", 2));
         keywords.put("TEXT_text" , new BracketCounter("setText(", 1));
+        keywords.put("TEXT_textsize" , new BracketCounter("setTextSize(", 1));
         keywords.put("TEXT_text-color" , new BracketCounter("setTextColor(Color.parseColor(", 2));
         keywords.put("TEXT_gravity" , new BracketCounter("setGravity(GRAVITY.", 1));
-        keywords.put("TEXT_width" , new BracketCounter("getLayoutParams().width = ", 1));
-        keywords.put("TEXT_height" , new BracketCounter("getLayoutParams().height = ", 1));
+        keywords.put("TEXT_width" , new BracketCounter("setWidth(dp2px(", 2));
+        keywords.put("TEXT_height" , new BracketCounter("setHeight(dp2px(", 2));
+        
+        //BUTTON
+        keywords.put("BUTTON_background-color" , new BracketCounter("setBackgroundColor(Color.parseColor(", 2));
+        keywords.put("BUTTON_text" , new BracketCounter("setText(", 1));
+        keywords.put("BUTTON_textsize" , new BracketCounter("setTextSize(", 1));
+        keywords.put("BUTTON_text-color" , new BracketCounter("setTextColor(Color.parseColor(", 2));
+        keywords.put("BUTTON_gravity" , new BracketCounter("setGravity(GRAVITY.", 1));
+        keywords.put("BUTTON_width" , new BracketCounter("setWidth(dp2px(", 2));
+        keywords.put("BUTTON_height" , new BracketCounter("setHeight(dp2px(", 2));
     }
    
     public String ToString(Node node){
