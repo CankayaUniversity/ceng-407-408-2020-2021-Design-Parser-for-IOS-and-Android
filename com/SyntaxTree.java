@@ -75,7 +75,7 @@ public class SyntaxTree implements Runnable {
             this.java_source += "general.setOrientation(LinearLayout.VERTICAL);\n";
             this.java_source += "general.addView(ll);\n";
 
-            this.ios_source += "} \n";
+            this.ios_source += "\n Spacer() \n } \n";
             this.ios_source += this.iosMapAttribute.toString(current, current.getId(),0);
 
             //Print for fast test
@@ -114,7 +114,8 @@ public class SyntaxTree implements Runnable {
 
             this.iosWalker(current.getChildren().get(i));
     		
-    		if(current.getChildren().get(i).getToken().getTokenType() == VIEW || current.getChildren().get(i).getToken().getTokenType() == VIEW_H )
+            TokenType currentToken = current.getChildren().get(i).getToken().getTokenType();
+    		if(currentToken == VIEW || currentToken == VIEW_H || currentToken == BUTTON)
             	this.ios_source += "} \n";
     		    		
             this.ios_source += this.iosMapAttribute.toString(current.getChildren().get(i), current.getId(), i);

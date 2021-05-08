@@ -9,6 +9,7 @@ import java.util.Map;
 public class IosMapAttribute {
 	private static final Map<String, String> viewKeywords;
 	private static final Map<String, String> textKeywords;
+	private static final Map<String, String> buttonKeywords;
 	private static final Map<String, String> frame;
 	private static final Map<String, String> frameMinMax;
 	
@@ -19,6 +20,7 @@ public class IosMapAttribute {
 		viewKeywords.put("width", "width");
 		viewKeywords.put("height", "height");
 		viewKeywords.put("alignment", "alignment");
+		viewKeywords.put("orientation", "orientation");
 		viewKeywords.put("minHeight", "minHeight");
 		viewKeywords.put("minWidth", "minWidth");
 		viewKeywords.put("maxHeight", "maxHeight");
@@ -35,7 +37,23 @@ public class IosMapAttribute {
 		textKeywords.put("minWidth", "minWidth");
 		textKeywords.put("maxHeight", "maxHeight");
 		textKeywords.put("maxWidth", "maxWidth");
-
+		textKeywords.put("text", "text");
+		
+		buttonKeywords = new HashMap<>();
+		buttonKeywords.put("background-color", ".background(");
+		buttonKeywords.put("text-color", ".foregroundColor(");
+		buttonKeywords.put("text-size", "text-size");
+		buttonKeywords.put("alignment", "alignment");
+		buttonKeywords.put("width", "width");
+		buttonKeywords.put("padding", "padding");
+		buttonKeywords.put("height", "height");
+		buttonKeywords.put("alignment", "alignment");
+		buttonKeywords.put("minHeight", "minHeight");
+		buttonKeywords.put("minWidth", "minWidth");
+		buttonKeywords.put("maxHeight", "maxHeight");
+		buttonKeywords.put("maxWidth", "maxWidth");
+		buttonKeywords.put("text", "text");
+		
 		
 		/*
 		 * frame layout
@@ -66,6 +84,8 @@ public class IosMapAttribute {
 		case TEXT:
 			str += this.textAttribute(nodeAttr);
 			break;
+		case BUTTON:
+			str += this.buttonAttribute(nodeAttr);
 		default:
 			break;
 		}
@@ -142,6 +162,48 @@ public class IosMapAttribute {
 		return str;
 	}
 	
+	public String buttonAttribute(Map<String, String> nodeAttr) {
+		String str = "";
+		boolean widthHeightAlignFlag = true;
+		boolean minMaxWidthHeightFlag = true;
+		
+		//convert map to array
+		//this now work for color it will be converted.
+		for(String attr :  nodeAttr.keySet()) {
+			if(buttonKeywords.containsKey(attr)) {
+			
+				//if element has width, height, alignment attributes it will be puted frame
+				if(widthHeightAlignFlag && (attr.equals("width") || attr.equals("height") || attr.equals("alignment"))) {
+					widthHeightAlignFlag = false;
+					str += this.frameAccumulator(nodeAttr, frame);
+				}
+				//if element has minWidth, minHeight, maxWidth, maxHeight attributes it will be puted frame
+				else if(minMaxWidthHeightFlag && (attr.equals("minWidth") || attr.equals("minHeight") || attr.equals("maxHeight") || attr.equals("maxWidth"))) {
+					minMaxWidthHeightFlag = false;
+					str += this.frameAccumulator(nodeAttr, frameMinMax);
+				}
+				
+				if(attr.equals("background-color"))
+					str += this.setElementColor(buttonKeywords.get("background-color"), nodeAttr.get("background-color"));
+				
+				if(attr.equals("text-color"))
+					str += this.setElementColor(buttonKeywords.get("text-color"), nodeAttr.get("background-color"));
+				
+				if(attr.equals("padding"))
+					str += this.setPadding(nodeAttr.get("padding"));
+				
+				if(attr.equals("text-size"))
+					str += this.setElementFontColor("" ,nodeAttr.get("text-size"));
+ 
+				
+			}else{
+				System.out.println("ERROR: " + attr + " is not attribute of Button");
+			}
+		}
+		
+		return str;
+	}
+	
 	
 	//set color with given attributre and its color
 	//ex: setElementColor("foregroundColor", "#ff0000")
@@ -180,11 +242,21 @@ public class IosMapAttribute {
 		else return "";
 	}
 	
+	//this for padding tag
+	public String setPadding(String val) {
+		return ".padding("+val.replace("px", "")+")";
+	}
+	
+	//this for font color tag
+	public String setElementFontColor(String font, String size) {
+		return ".font(.custom(\"\", size:"+size.replace("px", "")+" ))\n";
+	}
+	
+	
 	//this convert if entered color hex type it will be converted RGB type. 
 	public Color HexToColor(String hex) 
 	{
 	    hex = hex.replace("#", "");
-	    System.out.println(hex.length() + "");
 	    switch (hex.length()) {
 	        case 6:
 	            return new Color(

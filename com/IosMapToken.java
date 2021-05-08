@@ -14,6 +14,7 @@ public class IosMapToken {
 		keywords.put(VIEW, "VStack");
 		keywords.put(VIEW_H, "HStack");
 		keywords.put(TEXT, "Text");
+		keywords.put(BUTTON, "Button");
 		keywords.put(IMAGE, "Image");
 		
 		//this for constructor properties
@@ -53,8 +54,7 @@ public class IosMapToken {
 					if(i != 0)
 						temp_str += ", ";
 					temp_str += alignment.get(attr) + "."+  nodeAttr.get(attr);
-					//str += "\n"+ keywords.get(attr) +  nodeAttr.get(attr) + ")\n";
-					System.out.println("pair 2 : " + keywords.get(attr) +  nodeAttr.get(attr) + ")") ;
+
 					i++;
 				}
 			}
@@ -70,6 +70,17 @@ public class IosMapToken {
 		else if(node.getToken().getTokenType() == TEXT) {
 			str += "\n\t"+keywords.get(TEXT);
 			str +=  "(\""+node.getAttribute().getKeywords().get("text")+"\") ";
+		}
+		//Ex button layout
+		//Button("text"){ ... }
+		//Button(text, action: { ... })
+		else if(node.getToken().getTokenType() == BUTTON) {
+			str += "\n\t"+keywords.get(BUTTON);
+			
+			//add text attribute to button
+			str +=  "(\""+node.getAttribute().getKeywords().get("text")+"\")";
+		
+			str += "{ //this area created for your purpose\n";		
 		}
 		else
 			//other tokens should start '('

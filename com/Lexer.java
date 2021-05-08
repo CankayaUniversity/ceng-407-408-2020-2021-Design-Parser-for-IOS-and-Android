@@ -69,7 +69,7 @@ public class Lexer {
         if (this.match(' ')) 
             attribute.setAtrribute(this.attributes());
            
-        if (tokenType == TokenType.TEXT) {
+        if (tokenType == TEXT || tokenType == BUTTON) {
             this.start = this.current;
             while (this.peek() != '<' && !this.isAtEnd()) {
                 this.advance();
