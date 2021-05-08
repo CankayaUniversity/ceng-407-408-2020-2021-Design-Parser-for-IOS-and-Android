@@ -62,7 +62,7 @@ public class SyntaxTree implements Runnable {
                     this.java_source += current.getId() + ".setText(" + current.getAttribute().getKeywords().get("text")
                             + "); \n";
                 
-                //androidWalker(current);
+                androidWalker(current);
                 
                 this.ios_source = "VStack{";
 

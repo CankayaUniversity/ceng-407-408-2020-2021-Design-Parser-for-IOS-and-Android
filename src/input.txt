@@ -14,6 +14,6 @@
             <Text style="background-color:#ffa500;text-color: #ffffff;width: 100px;height: 120px;">sol sag sol text</Text>
     	    <Text style="background-color:#ffa500;">sol sag sol text</Text>
         </View>
-        <Text style="background-color:#d2691e;minWidth:200;width:100;">bu sol sag text text</Text>
+        <Text style="background-color:#d2691e;minWidth:200;width:100;orientation: vertical;">bu sol sag text text</Text>
     </View>
 </View> 

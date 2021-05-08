@@ -7,21 +7,35 @@ import java.util.List;
 import java.util.Map;
 
 public class IosMapAttribute {
-	private static final Map<String, String> keywords;
 	private static final Map<String, String> viewKeywords;
+	private static final Map<String, String> textKeywords;
 	private static final Map<String, String> frame;
 	private static final Map<String, String> frameMinMax;
-
-
+	
 	static  {
-		keywords = new HashMap<>();
-		keywords.put("background-color", ".background(");
-		keywords.put("text-color", ".foregroundColor(");
-
 		viewKeywords = new HashMap<>();
 		viewKeywords.put("background-color", ".background(");
 		viewKeywords.put("alignment", "alignment");
-		//viewKeywords also include frame, frameMinMax
+		viewKeywords.put("width", "width");
+		viewKeywords.put("height", "height");
+		viewKeywords.put("alignment", "alignment");
+		viewKeywords.put("minHeight", "minHeight");
+		viewKeywords.put("minWidth", "minWidth");
+		viewKeywords.put("maxHeight", "maxHeight");
+		viewKeywords.put("maxWidth", "maxWidth");
+		
+		textKeywords = new HashMap<>();
+		textKeywords.put("background-color", ".background(");
+		textKeywords.put("text-color", ".foregroundColor(");
+		textKeywords.put("alignment", "alignment");
+		textKeywords.put("width", "width");
+		textKeywords.put("height", "height");
+		textKeywords.put("alignment", "alignment");
+		textKeywords.put("minHeight", "minHeight");
+		textKeywords.put("minWidth", "minWidth");
+		textKeywords.put("maxHeight", "maxHeight");
+		textKeywords.put("maxWidth", "maxWidth");
+
 		
 		/*
 		 * frame layout
@@ -32,7 +46,7 @@ public class IosMapAttribute {
 		frame.put("width", "width");
 		frame.put("height", "height");
 		frame.put("alignment", "alignment");
-		
+		//frameMinMax same as frame
 		frameMinMax = new HashMap<>();
 		frameMinMax.put("minHeight", "minHeight");
 		frameMinMax.put("minWidth", "minWidth");
@@ -50,22 +64,7 @@ public class IosMapAttribute {
 			str += this.viewAttribute(nodeAttr);
 			break;
 		case TEXT:
-			 
-			for(Object attr : keywords.keySet().toArray()) {
-				if(nodeAttr.containsKey(attr)) {
-					
-					Color color = HexToColor(nodeAttr.get(attr));
-					double blue = color.getBlue();
-					double red = color.getRed();
-					double green = color.getGreen();
-					
-					str += "\n"+ keywords.get(attr) + "Color(red:"+red +", green:"+green+", blue: "+blue + "))\n";
-					//str += "\n"+ keywords.get(attr) +  nodeAttr.get(attr) + ")\n";
-					
-					System.out.println("pair 2 : " + keywords.get(attr) +  nodeAttr.get(attr) + ")") ;
-				}
-			}
-
+			str += this.textAttribute(nodeAttr);
 			break;
 		default:
 			break;
@@ -74,8 +73,79 @@ public class IosMapAttribute {
         return str;		
 	}
 	
+	public String viewAttribute(Map<String, String> nodeAttr) {
+		String str = "";
+		boolean widthHeightAlignFlag = true;
+		boolean minMaxWidthHeightFlag = true;
+		
+		//convert map to array
+		//this now work for color it will be converted.
+		for(String attr :  nodeAttr.keySet()) {
+			if(viewKeywords.containsKey(attr)) {
+			
+				//if element has width, height, alignment attributes it will be puted frame
+				if(widthHeightAlignFlag && (attr.equals("width") || attr.equals("height") || attr.equals("alignment"))) {
+					widthHeightAlignFlag = false;
+					str += this.frameAccumulator(nodeAttr, frame);
+				}
+				//if element has minWidth, minHeight, maxWidth, maxHeight attributes it will be puted frame
+				else if(minMaxWidthHeightFlag && (attr.equals("minWidth") || attr.equals("minHeight") || attr.equals("maxHeight") || attr.equals("maxWidth"))) {
+					minMaxWidthHeightFlag = false;
+					str += this.frameAccumulator(nodeAttr, frameMinMax);
+				}
+				
+				if(attr.equals("background-color"))
+					str += this.setElementColor(viewKeywords.get("background-color"), nodeAttr.get("background-color"));
+				
+				if(attr.equals("text-color"))
+					str += this.setElementColor(viewKeywords.get("text-color"), nodeAttr.get("background-color"));
+				
+			}else{
+				System.out.println("ERROR: " + attr + " is not attribute of VIEW");
+			}
+		}
+		return str;
+	}
+		
+	public String textAttribute(Map<String, String> nodeAttr) {
+		String str = "";
+		boolean widthHeightAlignFlag = true;
+		boolean minMaxWidthHeightFlag = true;
+		
+		//convert map to array
+		//this now work for color it will be converted.
+		for(String attr :  nodeAttr.keySet()) {
+			if(textKeywords.containsKey(attr)) {
+			
+				//if element has width, height, alignment attributes it will be puted frame
+				if(widthHeightAlignFlag && (attr.equals("width") || attr.equals("height") || attr.equals("alignment"))) {
+					widthHeightAlignFlag = false;
+					str += this.frameAccumulator(nodeAttr, frame);
+				}
+				//if element has minWidth, minHeight, maxWidth, maxHeight attributes it will be puted frame
+				else if(minMaxWidthHeightFlag && (attr.equals("minWidth") || attr.equals("minHeight") || attr.equals("maxHeight") || attr.equals("maxWidth"))) {
+					minMaxWidthHeightFlag = false;
+					str += this.frameAccumulator(nodeAttr, frameMinMax);
+				}
+				
+				if(attr.equals("background-color"))
+					str += this.setElementColor(textKeywords.get("background-color"), nodeAttr.get("background-color"));
+				
+				if(attr.equals("text-color"))
+					str += this.setElementColor(textKeywords.get("text-color"), nodeAttr.get("background-color"));
+				
+			}else{
+				System.out.println("ERROR: " + attr + " is not attribute of TEXT");
+			}
+		}
+		
+		return str;
+	}
 	
-	public String setBackgroundColor(String attr, String color) {
+	
+	//set color with given attributre and its color
+	//ex: setElementColor("foregroundColor", "#ff0000")
+	public String setElementColor(String attr, String color) {
 		Color color1 = HexToColor(color);
 		double blue = color1.getBlue();
 		double red = color1.getRed();
@@ -84,40 +154,12 @@ public class IosMapAttribute {
 		return "\n"+ attr + "Color(red:"+red +", green:"+green+", blue: "+blue + "))\n";
 	}
 	
-	public String viewAttribute(Map<String, String> nodeAttr) {
-		String str = "";
- 
-		//convert map to array
-		//this now work for color it will be converted.
-		for(Object attr : viewKeywords.keySet().toArray()) {
-			if(nodeAttr.containsKey(attr)) {
-				
-				
-				System.out.println("pair 2 : " + keywords.get(attr) +  nodeAttr.get(attr) + ")") ;
-			}
-		}
-		
-		if(nodeAttr.containsKey("background-color")) {
-			str += setBackgroundColor(keywords.get("background-color"), nodeAttr.get("background-color"));
-		}
-		
-		String frameAccumulatorStr = this.frameAccumulator(nodeAttr, frame);
-		if(!frameAccumulatorStr.equals(""))
-			str += "\n.frame("+ frameAccumulatorStr + ")\n";
-		
-		String frameMinMaxAccumulatorStr = this.frameAccumulator(nodeAttr, frameMinMax);
-		if(!frameMinMaxAccumulatorStr.equals(""))
-			str += "\n.frame("+ frameMinMaxAccumulatorStr + ")\n";
-		
-		return str;
-	}
-	
 	//Accumulate all frame attributes width, height, minHeight, maxWidth etc. with it spcefici frame map variable
 	public String frameAccumulator(Map<String, String> nodeAttr, Map<String, String> frame){
 		String accumulator = "";
 		int i=0;
 		
-		for(Object attr :frame.keySet().toArray()) {
+		for(Object attr : frame.keySet().toArray()){
 			if(nodeAttr.containsKey(attr)) {
 				//this for frame(width: 100, height: 200) in first index ',' will not add to head.
 				if(i != 0)
@@ -130,12 +172,12 @@ public class IosMapAttribute {
 					//alignment
 					accumulator += "."+ nodeAttr.get(attr);
 					
-				System.out.println("pair 2 : " + keywords.get(attr) +  nodeAttr.get(attr) + ")") ;
 				i++;
 			}
 		}
-		System.out.println("accumulator : "+ accumulator);
-		return accumulator;
+		
+		if(!accumulator.equals("")) return ".frame("+accumulator+ ")\n";
+		else return "";
 	}
 	
 	//this convert if entered color hex type it will be converted RGB type. 

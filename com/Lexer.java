@@ -129,6 +129,7 @@ public class Lexer {
         keywords = new HashMap<>();
         keywords.put("View", VIEW);
         keywords.put("Text", TEXT);
+        keywords.put("Button", BUTTON);
         keywords.put("style", STYLE);
     }
 
