@@ -6,16 +6,14 @@ VStack{
 	VStack{
 
 	VStack{
-
-	Text("extererere         ") 
+Text("extererere         ") 
 .background(Color(red:255.0, green:255.0, blue: 0.0))
 
 .foregroundColor(Color(red:255.0, green:255.0, blue: 0.0))
 } 
 } 
 } 
-
-	Text("sol sol text") 
+Text("sol sol text") 
 .background(Color(red:0.0, green:255.0, blue: 255.0))
 } 
 
@@ -24,16 +22,17 @@ VStack{
 	VStack{
 
 	HStack{
-
-	Text("sol sag sol text") 
+Text("sol sag sol text") 
 .background(Color(red:255.0, green:165.0, blue: 0.0))
 .frame(width:  100, height:  120)
 
 .foregroundColor(Color(red:255.0, green:165.0, blue: 0.0))
 
-	Text("sol sag sol text") 
+.frame(width:  100, height:  120)
+Text("sol sag sol text") 
 .background(Color(red:255.0, green:165.0, blue: 0.0))
 } 
+<<<<<<< HEAD
 .frame(width:  300, alignment: .top, height:  200)
 
 	Text("bu sol sag text text") 
@@ -45,3 +44,13 @@ VStack{
 
 .background(Color(red:255.0, green:0.0, blue: 0.0))
 .frame(width:  50)
+=======
+
+.frame(width:  300, alignment: top, height:  200)
+Text("bu sol sag text text") 
+.background(Color(red:210.0, green:105.0, blue: 30.0))
+
+.frame(width: 100)
+} 
+} 
+>>>>>>> 8a7d14fc9f5992a39f5c2423588e3a6d11b71e16
