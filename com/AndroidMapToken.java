@@ -20,10 +20,10 @@ public class AndroidMapToken {
         str += keywords.get(node.getToken().getTokenType()) + parentID + "_" + indexOfChildhood + " = new " + keywords.get(node.getToken().getTokenType()) + "(this); \n";
         node.setId(parentID + "_" + indexOfChildhood);
         
+        str += parentID + ".addView(" + node.getId() + "); \n";
+        
         AndroidMapAttribute ama = new AndroidMapAttribute();
         str += ama.ToString(node);
-        
-        str += parentID + ".addView(" + node.getId() + "); \n";
         return str;
     }
 }
