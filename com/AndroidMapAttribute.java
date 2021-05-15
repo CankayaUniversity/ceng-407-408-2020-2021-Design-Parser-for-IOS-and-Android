@@ -53,9 +53,9 @@ public class AndroidMapAttribute{
     public String ToString(Node node){
         String str = "";
         for(Map.Entry<String, String> pair : node.getAttribute().getKeywords().entrySet()){
-        	if(keywords.get(node.getToken().getTokenType() + "_" + pair.getKey()) != null) {
-                str += node.getId() + "." + keywords.get(node.getToken().getTokenType() + "_" + pair.getKey()).str + "\"" + pair.getValue() + "\"";
-                str += keywords.get(node.getToken().getTokenType() + "_" + pair.getKey()).RepeatBrackets();
+        	if(keywords.get(node.getToken().Type() + "_" + pair.getKey()) != null) {
+                str += node.getId() + "." + keywords.get(node.getToken().Type() + "_" + pair.getKey()).str + "\"" + pair.getValue() + "\"";
+                str += keywords.get(node.getToken().Type() + "_" + pair.getKey()).RepeatBrackets();
                 str += ";\n";
         	}
         }

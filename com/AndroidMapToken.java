@@ -17,7 +17,7 @@ public class AndroidMapToken {
    
     public String ToString(Node node, String parentID, int indexOfChildhood){
         String str = "";
-        str += keywords.get(node.getToken().getTokenType()) + parentID + "_" + indexOfChildhood + " = new " + keywords.get(node.getToken().getTokenType()) + "(this); \n";
+        str += keywords.get(node.getToken().Type()) + parentID + "_" + indexOfChildhood + " = new " + keywords.get(node.getToken().Type()) + "(this); \n";
         node.setId(parentID + "_" + indexOfChildhood);
         
         str += parentID + ".addView(" + node.getId() + "); \n";

@@ -31,7 +31,7 @@ public class IosMapToken {
 		 */
 		String str = "";
 		
-		if(node.getToken().getTokenType() == VIEW) {
+		if(node.getToken().Type() == VIEW) {
 			Map<String, String> nodeAttr = node.getAttribute().getKeywords();
 
 			//orientation can be vertical, horizontal default value is vertical
@@ -67,14 +67,14 @@ public class IosMapToken {
 		}
 		//Ex text layout
 		//Text("value").foregroundColor(...)...
-		else if(node.getToken().getTokenType() == TEXT) {
+		else if(node.getToken().Type() == TEXT) {
 			str += "\n\t"+keywords.get(TEXT);
 			str +=  "(\""+node.getAttribute().getKeywords().get("text")+"\") ";
 		}
 		//Ex button layout
 		//Button("text"){ ... }
 		//Button(text, action: { ... })
-		else if(node.getToken().getTokenType() == BUTTON) {
+		else if(node.getToken().Type() == BUTTON) {
 			str += "\n\t"+keywords.get(BUTTON);
 			
 			//add text attribute to button
@@ -84,7 +84,7 @@ public class IosMapToken {
 		}
 		else
 			//other tokens should start '('
-			str += keywords.get(node.getToken().getTokenType())+"(";
+			str += keywords.get(node.getToken().Type())+"(";
 	       //this for ios text beacuse it should be like that Text("text inside") and its attributes.
        
         	

@@ -11,7 +11,7 @@ public class Token {
         this.line = line;
     }
 
-    public TokenType getTokenType() {
+    public TokenType Type() {
         return this.type;
     }
 

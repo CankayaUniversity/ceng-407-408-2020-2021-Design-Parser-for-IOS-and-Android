@@ -46,7 +46,7 @@ public class SyntaxTree implements Runnable {
         Node current = root;
 
         if (current != null) {
-        	if (current.getToken().getTokenType() == VIEW) {
+        	if (current.getToken().Type() == VIEW) {
         		//these are for ios and android soruce code starting tags.
                 this.java_source = "LinearLayout ll = new LinearLayout(this); \n";
                 this.java_source += "ll.setOrientation(LinearLayout.VERTICAL); \n";
@@ -108,13 +108,13 @@ public class SyntaxTree implements Runnable {
     	Node current = node;
     	
     	for(int i=0; i<current.getChildren().size(); i++) {
-    		//System.out.print("\n" + current.getChildren().get(i).getToken().getTokenType() + " ::: ");
+    		//System.out.print("\n" + current.getChildren().get(i).getToken().Type() + " ::: ");
     
             this.ios_source += this.iosMapToken.toString(current.getChildren().get(i), current.getId(), i);
 
             this.iosWalker(current.getChildren().get(i));
     		
-            TokenType currentToken = current.getChildren().get(i).getToken().getTokenType();
+            TokenType currentToken = current.getChildren().get(i).getToken().Type();
     		if(currentToken == VIEW || currentToken == VIEW_H || currentToken == BUTTON)
             	this.ios_source += "} \n";
     		    		

@@ -77,7 +77,7 @@ public class IosMapAttribute {
         
 		Map<String, String> nodeAttr = node.getAttribute().getKeywords();
 
-		switch (node.getToken().getTokenType()) {
+		switch (node.getToken().Type()) {
 		case VIEW: 
 			str += this.viewAttribute(nodeAttr);
 			break;
