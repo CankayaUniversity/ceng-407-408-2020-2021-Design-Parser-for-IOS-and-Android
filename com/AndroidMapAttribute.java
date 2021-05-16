@@ -5,16 +5,16 @@ import java.util.Map;
 
 public class AndroidMapAttribute{
 
-    private static class BracketCounter{
+    private static class KeywordAdapter{
         private String str;
         private int bracketCount;
         private boolean quotes;
-        public BracketCounter(String str, int bracketCount){
+        public KeywordAdapter(String str, int bracketCount){
         	quotes = true;
             this.str = str;
             this.bracketCount = bracketCount;
         }
-        public BracketCounter(boolean quotes, String str, int bracketCount){
+        public KeywordAdapter(boolean quotes, String str, int bracketCount){
         	this.quotes = quotes;
             this.str = str;
             this.bracketCount = bracketCount;
@@ -39,33 +39,33 @@ public class AndroidMapAttribute{
         }
     }
 
-    private static final HashMap<String, BracketCounter> keywords;
+    private static final HashMap<String, KeywordAdapter> keywords;
     static {
         keywords = new HashMap<>();
         //VIEW
-        keywords.put("VIEW_background-color" , new BracketCounter("setBackgroundColor(Color.parseColor(", 2));
-        keywords.put("VIEW_gravity" , new BracketCounter("setGravity(GRAVITY.", 1));//Add multiple attribute feature.
-        keywords.put("VIEW_width" , new BracketCounter(false, "getLayoutParams().width = ", 1));
-        keywords.put("VIEW_height" , new BracketCounter(false, "getLayoutParams().height = ", 1));
-        keywords.put("VIEW_orientation" , new BracketCounter("setOrientation(LinearLayout.", 1));//Remove quotes
+        keywords.put("VIEW_background-color" , new KeywordAdapter("setBackgroundColor(Color.parseColor(", 2));
+        keywords.put("VIEW_gravity" , new KeywordAdapter("setGravity(GRAVITY.", 1));//Add multiple attribute feature.
+        keywords.put("VIEW_width" , new KeywordAdapter(false, "getLayoutParams().width = ", 0));
+        keywords.put("VIEW_height" , new KeywordAdapter(false, "getLayoutParams().height = ", 0));
+        keywords.put("VIEW_orientation" , new KeywordAdapter("setOrientation(LinearLayout.", 1));
         
         //TEXT
-        keywords.put("TEXT_background-color" , new BracketCounter("setBackgroundColor(Color.parseColor(", 2));
-        keywords.put("TEXT_text" , new BracketCounter("setText(", 1));
-        keywords.put("TEXT_textsize" , new BracketCounter(false, "setTextSize(", 1));//Remove quotes
-        keywords.put("TEXT_text-color" , new BracketCounter("setTextColor(Color.parseColor(", 2));
-        keywords.put("TEXT_gravity" , new BracketCounter("setGravity(GRAVITY.", 1));
-        keywords.put("TEXT_width" , new BracketCounter(false, "getLayoutParams().width = ", 2));
-        keywords.put("TEXT_height" , new BracketCounter(false, "getLayoutParams().height = ", 2));
+        keywords.put("TEXT_background-color" , new KeywordAdapter("setBackgroundColor(Color.parseColor(", 2));
+        keywords.put("TEXT_text" , new KeywordAdapter("setText(", 1));
+        keywords.put("TEXT_textsize" , new KeywordAdapter(false, "setTextSize(", 1));
+        keywords.put("TEXT_text-color" , new KeywordAdapter("setTextColor(Color.parseColor(", 2));
+        keywords.put("TEXT_gravity" , new KeywordAdapter("setGravity(GRAVITY.", 1));
+        keywords.put("TEXT_width" , new KeywordAdapter(false, "getLayoutParams().width = ", 0));
+        keywords.put("TEXT_height" , new KeywordAdapter(false, "getLayoutParams().height = ", 0));
         
         //BUTTON
-        keywords.put("BUTTON_background-color" , new BracketCounter("setBackgroundColor(Color.parseColor(", 2));
-        keywords.put("BUTTON_text" , new BracketCounter("setText(", 1));
-        keywords.put("BUTTON_textsize" , new BracketCounter(false, "setTextSize(", 1));
-        keywords.put("BUTTON_text-color" , new BracketCounter("setTextColor(Color.parseColor(", 2));
-        keywords.put("BUTTON_gravity" , new BracketCounter("setGravity(GRAVITY.", 1));
-        keywords.put("BUTTON_width" , new BracketCounter(false, "getLayoutParams().width = ", 2));
-        keywords.put("BUTTON_height" , new BracketCounter(false, "getLayoutParams().height = ", 2));
+        keywords.put("BUTTON_background-color" , new KeywordAdapter("setBackgroundColor(Color.parseColor(", 2));
+        keywords.put("BUTTON_text" , new KeywordAdapter("setText(", 1));
+        keywords.put("BUTTON_textsize" , new KeywordAdapter(false, "setTextSize(", 1));
+        keywords.put("BUTTON_text-color" , new KeywordAdapter("setTextColor(Color.parseColor(", 2));
+        keywords.put("BUTTON_gravity" , new KeywordAdapter("setGravity(GRAVITY.", 1));
+        keywords.put("BUTTON_width" , new KeywordAdapter(false, "getLayoutParams().width = ", 0));
+        keywords.put("BUTTON_height" , new KeywordAdapter(false, "getLayoutParams().height = ", 0));
     }
    
     public String ToString(Node node){
