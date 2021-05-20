@@ -104,7 +104,7 @@ public class AndroidMapAttribute{
         
         //IMAGE
         keywords.put("IMAGE_background-color" , new KeywordAdapter("setBackgroundColor(Color.parseColor(", 2));
-        keywords.put("IMAGE_src" , new KeywordAdapter("setImage(", 1));
+        keywords.put("IMAGE_src" , new KeywordAdapter("setImageResource(R.drawable.", 1));
         keywords.put("IMAGE_text-color" , new KeywordAdapter("setTextColor(Color.parseColor(", 2));
         keywords.put("IMAGE_gravity" , new KeywordAdapter(false, true, "setGravity(GRAVITY.", 1));
         keywords.put("IMAGE_width" , new KeywordAdapter(false, "getLayoutParams().width = ", 0));
