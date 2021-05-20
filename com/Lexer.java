@@ -69,14 +69,17 @@ public class Lexer {
         if (this.match(' ')) 
             attribute.setAtrribute(this.attributes());
            
-        if (tokenType == TEXT || tokenType == BUTTON) {
+        if (tokenType == TEXT || tokenType == BUTTON || tokenType == IMAGE) {
             this.start = this.current;
             while (this.peek() != '<' && !this.isAtEnd()) {
                 this.advance();
             }
             this.start++;
             String text = this.source.substring(this.start, this.current);
-            attribute.addAttribute("text", text);
+            if(tokenType == IMAGE)
+            	attribute.addAttribute("src", text);
+            else
+            	attribute.addAttribute("text", text);
         }
 
         if (attribute != null)
@@ -130,6 +133,7 @@ public class Lexer {
         keywords.put("View", VIEW);
         keywords.put("Text", TEXT);
         keywords.put("Button", BUTTON);
+        keywords.put("Image", IMAGE);
         keywords.put("style", STYLE);
     }
 

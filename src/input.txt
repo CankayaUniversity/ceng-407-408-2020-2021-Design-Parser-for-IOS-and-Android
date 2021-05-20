@@ -15,6 +15,7 @@
     	    <Text style="background-color:#ffa500;">sol sag sol text</Text>
         </View>
         <Text style="background-color:#d2691e;minWidth:200px;width:100px;">bu sol sag text text</Text>
+        <Image style="background-color:#d2691e;minWidth:200px;width:100px;">jpeg.png</Text>
         <Button style="background-color:#d2691e;minWidth:200px;width:100px;padding: 50px;text-size: 20px;></Button>
     </View>
-</View> 
+</View>

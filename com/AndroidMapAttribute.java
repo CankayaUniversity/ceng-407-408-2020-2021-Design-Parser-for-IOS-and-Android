@@ -101,6 +101,14 @@ public class AndroidMapAttribute{
         keywords.put("BUTTON_gravity" , new KeywordAdapter(false, true, "setGravity(GRAVITY.", 1));
         keywords.put("BUTTON_width" , new KeywordAdapter(false, "getLayoutParams().width = ", 0));
         keywords.put("BUTTON_height" , new KeywordAdapter(false, "getLayoutParams().height = ", 0));
+        
+        //IMAGE
+        keywords.put("IMAGE_background-color" , new KeywordAdapter("setBackgroundColor(Color.parseColor(", 2));
+        keywords.put("IMAGE_src" , new KeywordAdapter("setImage(", 1));
+        keywords.put("IMAGE_text-color" , new KeywordAdapter("setTextColor(Color.parseColor(", 2));
+        keywords.put("IMAGE_gravity" , new KeywordAdapter(false, true, "setGravity(GRAVITY.", 1));
+        keywords.put("IMAGE_width" , new KeywordAdapter(false, "getLayoutParams().width = ", 0));
+        keywords.put("IMAGE_height" , new KeywordAdapter(false, "getLayoutParams().height = ", 0));
     }
    
     public String ToString(Node node){

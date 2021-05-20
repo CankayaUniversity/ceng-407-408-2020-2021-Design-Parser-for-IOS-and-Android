@@ -13,6 +13,8 @@ public class AndroidMapToken {
         keywords.put(VIEW , "LinearLayout ");
         keywords.put(VIEW_H , "LinearLayout ");
         keywords.put(TEXT , "TextView ");
+        keywords.put(BUTTON , "Button ");
+        keywords.put(IMAGE , "ImageView ");
     }
    
     public String ToString(Node node, String parentID, int indexOfChildhood){
