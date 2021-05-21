@@ -33,15 +33,21 @@ public class IosMapToken {
 		
 		if(node.getToken().Type() == VIEW) {
 			Map<String, String> nodeAttr = node.getAttribute().getKeywords();
-
+			
 			//orientation can be vertical, horizontal default value is vertical
-			String orientation = "vertical";
+			String orientation = "";
  			if(nodeAttr.get("orientation") != null)
 				orientation = nodeAttr.get("orientation");
 			 
+ 			if(node.getChildren().size() > 1 && orientation.equals("")) {
+ 				str += "\n\t"+keywords.get(VIEW_H);
+ 			}else {
+ 				orientation = "vertical";
+ 			}
+ 				
  			//set orientation token. In ios VStack, HStack and ZStack orientation is different.
-			if(orientation.equals("vertical"))
-				str += "\n\t"+keywords.get(VIEW);
+ 			if(orientation.equals("vertical"))
+				str += "\n\t"+keywords.get(VIEW)+"(alignment: .leading)";
 			else if(orientation.equals("horizontal"))
 				str += "\n\t"+keywords.get(VIEW_H);
 

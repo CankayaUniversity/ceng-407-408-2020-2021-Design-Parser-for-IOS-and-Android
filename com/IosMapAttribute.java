@@ -169,7 +169,7 @@ public class IosMapAttribute {
 					str += this.setElementColor(textKeywords.get("background-color"), nodeAttr.get("background-color"));
 				
 				if(attr.equals("text-color"))
-					str += this.setElementColor(textKeywords.get("text-color"), nodeAttr.get("background-color"));
+					str += this.setElementColor(textKeywords.get("text-color"), nodeAttr.get("text-color"));
 				
 			}else{
 				System.out.println("ERROR: " + attr + " is not attribute of TEXT");

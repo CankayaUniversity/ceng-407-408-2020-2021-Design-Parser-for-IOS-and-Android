@@ -1,16 +1,16 @@
 VStack{
-	VStack{
+	HStack{
 
-	VStack{
+	VStack(alignment: .leading){
 
-	VStack{
+	VStack(alignment: .leading){
 
-	VStack{
+	VStack(alignment: .leading){
 
 	Text("extererere         ") 
 .background(Color(red:255.0, green:255.0, blue: 0.0))
 
-.foregroundColor(Color(red:255.0, green:255.0, blue: 0.0))
+.foregroundColor(Color(red:255.0, green:255.0, blue: 255.0))
 } 
 } 
 } 
@@ -21,15 +21,15 @@ VStack{
 
 .background(Color(red:0.0, green:0.0, blue: 0.0))
 
-	VStack{
-
 	HStack{
+
+	VStack(alignment: .leading){
 
 	Text("sol sag sol text") 
 .background(Color(red:255.0, green:165.0, blue: 0.0))
 .frame(width:  100, height:  120)
 
-.foregroundColor(Color(red:255.0, green:165.0, blue: 0.0))
+.foregroundColor(Color(red:255.0, green:255.0, blue: 255.0))
 
 	Text("sol sag sol text") 
 .background(Color(red:255.0, green:165.0, blue: 0.0))
