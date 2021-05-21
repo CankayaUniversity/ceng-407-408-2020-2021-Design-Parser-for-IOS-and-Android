@@ -10,12 +10,12 @@
         <Text style="background-color:#00ffff">sol sol text</Text>
     </View>
     <View>
-        <View style="alignment:top;orientation:horizontal;width: 300px;height: 200px;">
+        <View style="orientation:horizontal;width: 300px;height: 200px;alignment:top;">
             <Text style="background-color:#ffa500;text-color: #ffffff;width: 100px;height: 120px;">sol sag sol text</Text>
     	    <Text style="background-color:#ffa500;">sol sag sol text</Text>
         </View>
         <Text style="background-color:#d2691e;minWidth:200px;width:100px;">bu sol sag text text</Text>
-        <Image style="background-color:#d2691e;minWidth:200px;width:100px;">jpeg.png</Text>
+        <Image style="background-color:#d2691e;minWidth:200px;width:100px;">trya</Text>
         <Button style="background-color:#d2691e;minWidth:200px;width:100px;padding: 50px;text-size: 20px;></Button>
     </View>
 </View>

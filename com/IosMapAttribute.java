@@ -10,6 +10,7 @@ public class IosMapAttribute {
 	private static final Map<String, String> viewKeywords;
 	private static final Map<String, String> textKeywords;
 	private static final Map<String, String> buttonKeywords;
+	private static final Map<String, String> imageKeywords;
 	private static final Map<String, String> frame;
 	private static final Map<String, String> frameMinMax;
 	
@@ -54,6 +55,18 @@ public class IosMapAttribute {
 		buttonKeywords.put("maxWidth", "maxWidth");
 		buttonKeywords.put("text", "text");
 		
+		imageKeywords = new HashMap<>();
+		imageKeywords.put("background-color", ".background(");
+		imageKeywords.put("text-color", ".foregroundColor(");
+		imageKeywords.put("alignment", "alignment");
+		imageKeywords.put("width", "width");
+		imageKeywords.put("height", "height");
+		imageKeywords.put("alignment", "alignment");
+		imageKeywords.put("minHeight", "minHeight");
+		imageKeywords.put("minWidth", "minWidth");
+		imageKeywords.put("maxHeight", "maxHeight");
+		imageKeywords.put("maxWidth", "maxWidth");
+		imageKeywords.put("text", "text");
 		
 		/*
 		 * frame layout
@@ -86,6 +99,10 @@ public class IosMapAttribute {
 			break;
 		case BUTTON:
 			str += this.buttonAttribute(nodeAttr);
+			break;
+		case IMAGE:
+			str+= this.imageAttribute(nodeAttr);
+			break;
 		default:
 			break;
 		}
@@ -162,6 +179,44 @@ public class IosMapAttribute {
 		return str;
 	}
 	
+	public String imageAttribute(Map<String, String> nodeAttr) {
+		String str = "";
+		boolean widthHeightAlignFlag = true;
+		boolean minMaxWidthHeightFlag = true;
+		
+		str += ".resizable()\n";
+		str += ".scaledToFit()\n";
+		
+		//convert map to array
+		//this now work for color it will be converted.
+		for(String attr :  nodeAttr.keySet()) {
+			if(imageKeywords.containsKey(attr)) {
+			
+				//if element has width, height, alignment attributes it will be puted frame
+				if(widthHeightAlignFlag && (attr.equals("width") || attr.equals("height") || attr.equals("alignment"))) {
+					widthHeightAlignFlag = false;
+					str += this.frameAccumulator(nodeAttr, frame);
+				}
+				//if element has minWidth, minHeight, maxWidth, maxHeight attributes it will be puted frame
+				else if(minMaxWidthHeightFlag && (attr.equals("minWidth") || attr.equals("minHeight") || attr.equals("maxHeight") || attr.equals("maxWidth"))) {
+					minMaxWidthHeightFlag = false;
+					str += this.frameAccumulator(nodeAttr, frameMinMax);
+				}
+				
+				if(attr.equals("background-color"))
+					str += this.setElementColor(imageKeywords.get("background-color"), nodeAttr.get("background-color"));
+				
+				if(attr.equals("text-color"))
+					str += this.setElementColor(imageKeywords.get("text-color"), nodeAttr.get("background-color"));
+				
+			}else{
+				System.out.println("ERROR: " + attr + " is not attribute of TEXT");
+			}
+		}
+		
+		return str;
+	}
+	
 	public String buttonAttribute(Map<String, String> nodeAttr) {
 		String str = "";
 		boolean widthHeightAlignFlag = true;
@@ -222,6 +277,7 @@ public class IosMapAttribute {
 		int i=0;
 		
 		for(Object attr : frame.keySet().toArray()){
+			System.out.println("******a*a*a*aa* "+ attr);
 			if(nodeAttr.containsKey(attr)) {
 				//this for frame(width: 100, height: 200) in first index ',' will not add to head.
 				if(i != 0)

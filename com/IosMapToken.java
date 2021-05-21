@@ -71,6 +71,10 @@ public class IosMapToken {
 			str += "\n\t"+keywords.get(TEXT);
 			str +=  "(\""+node.getAttribute().getKeywords().get("text")+"\") ";
 		}
+		else if(node.getToken().Type() == IMAGE) {
+			str += "\n\t"+keywords.get(IMAGE);
+			str +=  "(\""+node.getAttribute().getKeywords().get("src").split(".png")[0]+"\") ";
+		}
 		//Ex button layout
 		//Button("text"){ ... }
 		//Button(text, action: { ... })

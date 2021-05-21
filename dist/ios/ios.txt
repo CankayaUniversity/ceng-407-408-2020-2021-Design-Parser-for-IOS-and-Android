@@ -40,7 +40,14 @@ VStack{
 .background(Color(red:210.0, green:105.0, blue: 30.0))
 .frame(width: 100)
 .frame(minWidth: 200)
-Image(
+
+	Image("trya") .resizable()
+.scaledToFit()
+
+.background(Color(red:210.0, green:105.0, blue: 30.0))
+.frame(width: 100)
+.frame(minWidth: 200)
+
 	Button(""){ //this area created for your purpose
 } 
 
