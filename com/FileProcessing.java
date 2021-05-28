@@ -9,7 +9,9 @@ import java.util.Scanner; // Import the Scanner class to read text files
 
 public class FileProcessing {
 
-	private static FileProcessing instance;
+	public static FileProcessing instance;
+	public static boolean processIos=false;
+	public static boolean processAndroid=false;
 	private  String directoryPath;
 	private  String androidFolder;
 	private String iosFolder;
@@ -84,7 +86,7 @@ public class FileProcessing {
     	else if(platform.equals("Android")) {
     		
     		try {
-    			writer = new FileWriter(androidFolder, false);
+    			writer = new FileWriter(androidFolder+"/android.txt", false);
     			writer.write(source);
     			writer.close();
     		}catch(IOException e) {

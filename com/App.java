@@ -10,27 +10,38 @@ public class App {
     public static void main(String args[]) {
         String userInput = "input.txt";      
         String source = FileProcessing.GetInstance().read(userInput);
+        
+        Map<String, List<String>> flags = App.readFlags(args);
+        for(Map.Entry<String, List<String>> entry  : flags.entrySet()) {
+        	if(entry.getKey().equals("parser-run") || entry.getKey().equals("parser-export")) {
+        		for(String option : entry.getValue()) {
+        			if(option.equals("ios")) {
+            			FileProcessing.processIos = true;
+            			System.out.println(option);
+            		}
+            		if(option.equals("android")) {
+            			FileProcessing.processAndroid = true;
+            			System.out.println(option);
+            		}
+            		
+            	}
+        	}
+        	
+        	if(entry.getKey().equals("parser-create")) {
+        		FileProcessing.GetInstance().createFolder();
+        	}
+        	
+        	if(entry.getKey().equals("parser-help")) {
+        		System.out.println("********************");
+        		System.out.println("Create project: run parser-create. This create dist folder.");
+        		System.out.println("Run project: run parser-run. This create android or ios folder in the dist folder with specific arguments options.");
+        		System.out.println("Export project: run parser-export. This export android or ios in dist folder.");
+        	}
+        }
                 
         Lexer lex = new Lexer(source);
         lex.scanTokens();
         lex.getSyntaxTree().walk();
-        
-        Map<String, List<String>> a = App.readFlags(args);
-        for(Map.Entry<String, List<String>> entry  : a.entrySet()) {
-        	/*
-        	System.out.println(entry.getKey() + " : ");
-        	if(entry.getKey().equals("d")) {
-        		for(String option : entry.getValue()) {
-            		System.out.print(option + " ---");
-            	}
-        	}else if(entry.getKey().equals("device")) {
-        		for(String option : entry.getValue()) {
-            		System.out.print(option + " ---");
-            	}
-        	}
-        	
-        	System.out.println();*/
-        }
     }
     
     private static Map<String, List<String>> readFlags(String args[]) {

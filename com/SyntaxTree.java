@@ -44,48 +44,57 @@ public class SyntaxTree implements Runnable {
 
     public void walk() {
         Node current = root;
+        FileProcessing.GetInstance().createFolder();
 
         if (current != null) {
         	if (current.getToken().Type() == VIEW) {
-        		//these are for ios and android soruce code starting tags.
-                this.java_source = "LinearLayout ll = new LinearLayout(this); \n";
-                this.java_source += "ll.setOrientation(LinearLayout.VERTICAL); \n";
+        		if(FileProcessing.processAndroid) {
+        			//these are for ios and android source code starting tags.
+        			this.java_source = "LinearLayout ll = new LinearLayout(this); \n";
+        			this.java_source += "ll.setOrientation(LinearLayout.VERTICAL); \n";
                 
-                temp_id = "ll";
-                current.setId(temp_id);
+        			//ll mean LinearLayout
+        			temp_id = "ll";
+                	current.setId(temp_id);
  
-                if (current.getAttribute().getKeywords().get("background-color") != null)
-                    this.java_source += current.getId() + ".setBackgroundColor(Color.parseColor(" + "\""
-                            + current.getAttribute().getKeywords().get("background-color") + "\"" + ")); \n";
+                	if (current.getAttribute().getKeywords().get("background-color") != null)
+                		this.java_source += current.getId() + ".setBackgroundColor(Color.parseColor(" + "\""
+                				+ current.getAttribute().getKeywords().get("background-color") + "\"" + ")); \n";
                 
-                if (current.getAttribute().getKeywords().get("text") != null)
-                    this.java_source += current.getId() + ".setText(" + current.getAttribute().getKeywords().get("text")
-                            + "); \n";
+                	if (current.getAttribute().getKeywords().get("text") != null)
+                		this.java_source += current.getId() + ".setText(" + current.getAttribute().getKeywords().get("text")
+                		+ "); \n";
                 
-                androidWalker(current);
-                
-                this.ios_source = "VStack{";
+                	androidWalker(current);
+                		
+                	//these are for end of android and ios source code closing tags.
+                    this.java_source += "LinearLayout general = findViewById(R.id.general);\n";
+                    this.java_source += "general.setOrientation(LinearLayout.VERTICAL);\n";
+                    this.java_source += "general.addView(ll);\n";
+                    
+                    FileProcessing.GetInstance().createFileAndWrite("Android", java_source);
+        		}
+        		
+        		if(FileProcessing.processIos) {
+        			this.ios_source = "VStack{";
 
-                iosWalker(current);
+                    iosWalker(current);
+                   
+                    this.ios_source += "\n Spacer() \n } \n";
+                    this.ios_source += this.iosMapAttribute.toString(current, current.getId(),0);
+                    FileProcessing.GetInstance().createFileAndWrite("Ios", ios_source);
+
+        		}
+                
                 
             }
-
-            //these are for end of android and ios source code closing tags.
-            this.java_source += "LinearLayout general = findViewById(R.id.general);\n";
-            this.java_source += "general.setOrientation(LinearLayout.VERTICAL);\n";
-            this.java_source += "general.addView(ll);\n";
-
-            this.ios_source += "\n Spacer() \n } \n";
-            this.ios_source += this.iosMapAttribute.toString(current, current.getId(),0);
-
             //Print for fast test
             System.out.println("*****************************************");
             System.out.println(this.java_source);
             System.out.println("*****************************************");
             System.out.println(this.ios_source);
             
-            FileProcessing.GetInstance().createFolder();
-            FileProcessing.GetInstance().createFileAndWrite("Ios", ios_source);
+            System.out.println(FileProcessing.processAndroid + " : " + FileProcessing.processIos);
         }
     }
 
