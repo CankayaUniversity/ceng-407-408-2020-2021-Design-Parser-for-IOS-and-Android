@@ -84,6 +84,12 @@ public class AndroidMapAttribute{
         keywords.put("VIEW_height" , new KeywordAdapter(false, "getLayoutParams().height = ", 0));
         keywords.put("VIEW_orientation" , new KeywordAdapter(false, true, "setOrientation(LinearLayout.", 1));
         
+        //SCROLLVIEW
+        keywords.put("SCROLLVIEW_background-color" , new KeywordAdapter("setBackgroundColor(Color.parseColor(", 2));
+        keywords.put("SCROLLVIEW_gravity" , new KeywordAdapter(false, true, "setGravity(GRAVITY.", 1));
+        keywords.put("SCROLLVIEW_width" , new KeywordAdapter(false, "getLayoutParams().width = ", 0));
+        keywords.put("SCROLLVIEW_height" , new KeywordAdapter(false, "getLayoutParams().height = ", 0));
+        
         //TEXT
         keywords.put("TEXT_background-color" , new KeywordAdapter("setBackgroundColor(Color.parseColor(", 2));
         keywords.put("TEXT_text" , new KeywordAdapter("setText(", 1));

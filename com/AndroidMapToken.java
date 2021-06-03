@@ -15,6 +15,7 @@ public class AndroidMapToken {
         keywords.put(TEXT , "TextView ");
         keywords.put(BUTTON , "Button ");
         keywords.put(IMAGE , "ImageView ");
+        keywords.put(SCROLLVIEW , "ScrollView ");
     }
    
     public String ToString(Node node, String parentID, int indexOfChildhood){
