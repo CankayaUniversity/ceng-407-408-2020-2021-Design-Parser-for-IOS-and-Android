@@ -115,10 +115,9 @@ public class AndroidMapAttribute{
         String str = "";
         for(Map.Entry<String, String> pair : node.getAttribute().getKeywords().entrySet()){
         	if(keywords.get(node.getToken().Type() + "_" + pair.getKey()) != null) {
-                str += node.getId() + "." + keywords.get(node.getToken().Type() + "_" + pair.getKey()).GetString(pair.getValue());
+                str += node.getId() + "." + keywords.get(node.getToken().Type() + "_" + pair.getKey()).GetString(pair.getValue().trim());
         	}
         }
-
         return str;
     }
 }
