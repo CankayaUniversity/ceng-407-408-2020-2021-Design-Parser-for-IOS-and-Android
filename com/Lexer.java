@@ -81,7 +81,7 @@ public class Lexer {
             	attribute.addAttribute("src", text);
             }
             else {
-            	attribute.addAttribute("textsize", "15");
+            	attribute.addAttribute("text-size", "15");
             	attribute.addAttribute("text-color", "#000000");
             	attribute.addAttribute("text", text);
             	attribute.addAttribute("alignment", "left");

@@ -11,11 +11,11 @@
     </View>
     <View>
         <View style="alignment:top;orientation:horizontal;">
-            <Text style="background-color:#ffa500;text-color: #ffffff;">sol sag sol text</Text>
+            <Text style="background-color:#ffa500;text-color: #ffffff;text-size: 25;">sol sag sol text</Text>
     	    <Text style="background-color:#ffa500;">sol sag sol text</Text>
         </View>
-        <Text style="background-color:#d2691e;minWidth:200;">bu sol sag text text</Text>
-        <Image style="background-color:#d2691e;minWidth:200;">trya.png</Text>
-        <Button style="background-color:#d2691e;minWidth:200;text-size: 20;width:40;>dda</Button>
+        <Text style="background-color:#d2691e;minWidth:200;width: 100;">bu sol sag text text</Text>
+        <Image style="background-color:#d2691e;minWidth:200;width: 100;">trya.png</Text>
+        <Button style="background-color:#d2691e;minWidth:200;width: 100;text-size: 20;width:40;>dda</Button>
     </View>
 </View>

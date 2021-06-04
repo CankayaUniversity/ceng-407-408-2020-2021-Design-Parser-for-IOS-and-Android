@@ -8,10 +8,7 @@ public class IosMapAttribute {
 	private static final Map<String, String> viewKeywords;
 	private static final Map<String, String> textKeywords;
 	private static final Map<String, String> buttonKeywords;
-	private static final Map<String, String> frame;
-	private static final Map<String, String> imageKeywords;
-	private static final Map<String, String> frameMinMax;
-	
+	private static final Map<String, String> imageKeywords;	
 	static  {
 		viewKeywords = new HashMap<>();
 		viewKeywords.put("background-color", ".background(");
@@ -65,22 +62,6 @@ public class IosMapAttribute {
 		buttonKeywords.put("maxHeight", "maxHeight");
 		buttonKeywords.put("maxWidth", "maxWidth");
 		buttonKeywords.put("text", "text");
-		
-		/*
-		 * frame layout
-		 * frame(width: val, height: val, aligment: val)
-		 * so width, height and alignment should be accumulated.
-		 */
-		frame = new HashMap<>();
-		frame.put("width", "width");
-		frame.put("height", "height");
-		frame.put("alignment", "alignment");
-		//frameMinMax same as frame
-		frameMinMax = new HashMap<>();
-		frameMinMax.put("minHeight", "minHeight");
-		frameMinMax.put("minWidth", "minWidth");
-		frameMinMax.put("maxHeight", "maxHeight");
-		frameMinMax.put("maxWidth", "maxWidth");
 	}
 
 	public String toString(Node node, String parentID, int indexOfChildhood){
@@ -121,12 +102,12 @@ public class IosMapAttribute {
 				//if element has width, height, alignment attributes it will be puted frame
 				if(widthHeightAlignFlag && (attr.equals("width") || attr.equals("height") || attr.equals("alignment"))) {
 					widthHeightAlignFlag = false;
-					str += this.frameAccumulator(nodeAttr, frame);
+					str += this.frameAccumulator(nodeAttr);
 				}
 				//if element has minWidth, minHeight, maxWidth, maxHeight attributes it will be puted frame
 				if(minMaxWidthHeightFlag) {
 					minMaxWidthHeightFlag = false;
-					str += this.frameMinMaxAccumulator(nodeAttr, frameMinMax);
+					str += this.frameMinMaxAccumulator(nodeAttr);
 				}
 				
 				if(attr.equals("background-color"))
@@ -155,7 +136,7 @@ public class IosMapAttribute {
 				//if element has width, height, alignment attributes it will be puted frame
 				if(widthHeightAlignFlag && (attr.equals("width") || attr.equals("height") || attr.equals("alignment"))) {
 					widthHeightAlignFlag = false;
-					str += this.frameAccumulator(nodeAttr, frame);
+					str += this.frameAccumulator(nodeAttr);
 				}
 				
 				if(attr.equals("background-color"))
@@ -163,6 +144,9 @@ public class IosMapAttribute {
 				
 				if(attr.equals("text-color"))
 					str += this.setElementColor(textKeywords.get("text-color"), nodeAttr.get("text-color"));
+				
+				if(attr.equals("text-size"))
+					str += this.setElementFontColor("" ,nodeAttr.get("text-size"));
 				
 			}else{
 				System.out.println("ERROR: " + attr + " is not attribute of TEXT");
@@ -184,11 +168,10 @@ public class IosMapAttribute {
 		//this now work for color it will be converted.
 		for(String attr :  nodeAttr.keySet()) {
 			if(imageKeywords.containsKey(attr)) {
-
 				//if element has width, height, alignment attributes it will be puted frame
 				if(widthHeightAlignFlag && (attr.equals("width") || attr.equals("height") || attr.equals("alignment"))) {
 					widthHeightAlignFlag = false;
-					str += this.frameAccumulator(nodeAttr, frame);
+					str += this.frameAccumulator(nodeAttr);
 				}
 				if(attr.equals("background-color"))
 					str += this.setElementColor(imageKeywords.get("background-color"), nodeAttr.get("background-color"));
@@ -217,7 +200,7 @@ public class IosMapAttribute {
 				//if element has width, height, alignment attributes it will be puted frame
 				if(widthHeightAlignFlag && (attr.equals("width") || attr.equals("height") || attr.equals("alignment"))) {
 					widthHeightAlignFlag = false;
-					str += this.frameAccumulator(nodeAttr, frame);
+					str += this.frameAccumulator(nodeAttr);
 				}
 				//if element has minWidth, minHeight, maxWidth, maxHeight attributes it will be puted frame
 				
@@ -255,21 +238,21 @@ public class IosMapAttribute {
 	}
 	
 	//Accumulate all frame attributes width, height, minHeight, maxWidth etc. with it spcefici frame map variable
-	public String frameAccumulator(Map<String, String> nodeAttr, Map<String, String> frame){
+	public String frameAccumulator(Map<String, String> nodeAttr){
 		String accumulator = "";
 		int i=0;
 
 		if(nodeAttr.containsKey("width")) {
 			i++;
 			accumulator += "width: ";
-			accumulator += nodeAttr.get("width").replace("px", "").trim();
+			accumulator += nodeAttr.get("width").trim();
 		}
 		
 		if(nodeAttr.containsKey("height")) {
 			if(i != 0)
 				accumulator += ", ";
 			accumulator += "height: ";
-			accumulator += nodeAttr.get("height").replace("px", "").trim();
+			accumulator += nodeAttr.get("height").trim();
 			i++;
 		}
 		
@@ -280,15 +263,13 @@ public class IosMapAttribute {
 			accumulator += "."+ nodeAttr.get("alignment").trim();
 		}
 		
-	
 		if(!accumulator.equals("")) return ".frame("+accumulator+ ")\n";
 		else return "";
 	}
 	
-	public String frameMinMaxAccumulator(Map<String, String> nodeAttr, Map<String, String> frame){
+	public String frameMinMaxAccumulator(Map<String, String> nodeAttr){
  		String accumulator = "";
 		int seperatorCount=0;
-
 		String []arr = {
 				"minWidth", "maxWidth", "alignment"
 		};
@@ -312,8 +293,6 @@ public class IosMapAttribute {
 		else return "";
 	}
 	
-	
-
 	//this for padding tag
 	public String setPadding(String val) {
 		return ".padding("+val.replace("px", "")+")";
@@ -321,10 +300,10 @@ public class IosMapAttribute {
 	
 	//this for font color tag
 	public String setElementFontColor(String font, String size) {
+		System.out.println(".font(.custom(\"\", size:"+size.replace("px", "")+" ))\n");
 		return ".font(.custom(\"\", size:"+size.replace("px", "")+" ))\n";
 	}
-	
-	
+
 	//this convert if entered color hex type it will be converted RGB type. 
 	public Color HexToColor(String hex) 
 	{
@@ -335,11 +314,6 @@ public class IosMapAttribute {
 	            Integer.valueOf(hex.substring(0, 2), 16),
 	            Integer.valueOf(hex.substring(2, 4), 16),
 	            Integer.valueOf(hex.substring(4, 6), 16));
-	        case 7:
-	            return new Color(
-	            Integer.valueOf(hex.substring(1, 3), 16),
-	            Integer.valueOf(hex.substring(3, 5), 16),
-	            Integer.valueOf(hex.substring(5, 7), 16));
 	    }
 	    return null;
 	}
