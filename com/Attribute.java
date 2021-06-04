@@ -13,8 +13,9 @@ public class Attribute {
     }
 
     public void addAttribute(String key, String value) {
-    	if(!this.keywords.containsKey(key))
-    		this.keywords.put(key, value);
+    	if(this.keywords.containsKey(key))
+    		this.keywords.remove(key);
+        this.keywords.put(key, value);
     }
 
     public void setAtrribute(String source) {
