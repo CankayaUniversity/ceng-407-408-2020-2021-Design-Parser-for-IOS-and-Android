@@ -81,7 +81,12 @@ public class SyntaxTree implements Runnable {
                     iosWalker(current);
                    
                     this.ios_source += "\n Spacer() \n } \n";
+                    current.getAttribute().addAttribute("alignment", "top");
                     this.ios_source += this.iosMapAttribute.toString(current, current.getId(),0);
+                    
+                    this.ios_source += "\n .flipsForRightToLeftLayoutDirection(true)";
+                    this.ios_source += "\n .environment(\\.layoutDirection, .leftToRight)";
+                    
                     FileProcessing.GetInstance().createFileAndWrite("Ios", ios_source);
 
         		}

@@ -11,6 +11,7 @@ public class IosMapAttribute {
 	private static final Map<String, String> textKeywords;
 	private static final Map<String, String> buttonKeywords;
 	private static final Map<String, String> frame;
+	private static final Map<String, String> imageKeywords;
 	private static final Map<String, String> frameMinMax;
 	
 	static  {
@@ -26,6 +27,18 @@ public class IosMapAttribute {
 		viewKeywords.put("maxHeight", "maxHeight");
 		viewKeywords.put("maxWidth", "maxWidth");
 		
+		imageKeywords = new HashMap<>();
+		imageKeywords.put("background-color", ".background(");
+		imageKeywords.put("alignment", "alignment");
+		imageKeywords.put("width", "width");
+		imageKeywords.put("height", "height");
+		imageKeywords.put("alignment", "alignment");
+		imageKeywords.put("minHeight", "minHeight");
+		imageKeywords.put("minWidth", "minWidth");
+		imageKeywords.put("maxHeight", "maxHeight");
+		imageKeywords.put("maxWidth", "maxWidth");
+		imageKeywords.put("text", "text");
+		
 		textKeywords = new HashMap<>();
 		textKeywords.put("background-color", ".background(");
 		textKeywords.put("text-color", ".foregroundColor(");
@@ -38,6 +51,7 @@ public class IosMapAttribute {
 		textKeywords.put("maxHeight", "maxHeight");
 		textKeywords.put("maxWidth", "maxWidth");
 		textKeywords.put("text", "text");
+		textKeywords.put("text-size", "text-size");
 		
 		buttonKeywords = new HashMap<>();
 		buttonKeywords.put("background-color", ".background(");
@@ -53,7 +67,6 @@ public class IosMapAttribute {
 		buttonKeywords.put("maxHeight", "maxHeight");
 		buttonKeywords.put("maxWidth", "maxWidth");
 		buttonKeywords.put("text", "text");
-		
 		
 		/*
 		 * frame layout
@@ -86,6 +99,10 @@ public class IosMapAttribute {
 			break;
 		case BUTTON:
 			str += this.buttonAttribute(nodeAttr);
+			break;
+		case IMAGE:
+			str+= this.imageAttribute(nodeAttr);
+			break;
 		default:
 			break;
 		}
@@ -109,9 +126,9 @@ public class IosMapAttribute {
 					str += this.frameAccumulator(nodeAttr, frame);
 				}
 				//if element has minWidth, minHeight, maxWidth, maxHeight attributes it will be puted frame
-				else if(minMaxWidthHeightFlag && (attr.equals("minWidth") || attr.equals("minHeight") || attr.equals("maxHeight") || attr.equals("maxWidth"))) {
+				if(minMaxWidthHeightFlag) {
 					minMaxWidthHeightFlag = false;
-					str += this.frameAccumulator(nodeAttr, frameMinMax);
+					str += this.frameMinMaxAccumulator(nodeAttr, frameMinMax);
 				}
 				
 				if(attr.equals("background-color"))
@@ -142,23 +159,50 @@ public class IosMapAttribute {
 					widthHeightAlignFlag = false;
 					str += this.frameAccumulator(nodeAttr, frame);
 				}
-				//if element has minWidth, minHeight, maxWidth, maxHeight attributes it will be puted frame
-				else if(minMaxWidthHeightFlag && (attr.equals("minWidth") || attr.equals("minHeight") || attr.equals("maxHeight") || attr.equals("maxWidth"))) {
-					minMaxWidthHeightFlag = false;
-					str += this.frameAccumulator(nodeAttr, frameMinMax);
-				}
 				
 				if(attr.equals("background-color"))
 					str += this.setElementColor(textKeywords.get("background-color"), nodeAttr.get("background-color"));
 				
 				if(attr.equals("text-color"))
-					str += this.setElementColor(textKeywords.get("text-color"), nodeAttr.get("background-color"));
+					str += this.setElementColor(textKeywords.get("text-color"), nodeAttr.get("text-color"));
 				
 			}else{
 				System.out.println("ERROR: " + attr + " is not attribute of TEXT");
 			}
 		}
 		
+		return str;
+	}
+	
+	public String imageAttribute(Map<String, String> nodeAttr) {
+		String str = "";
+		boolean widthHeightAlignFlag = true;
+		boolean minMaxWidthHeightFlag = true;
+
+		str += ".resizable()\n";
+		str += ".scaledToFit()\n";
+
+		//convert map to array
+		//this now work for color it will be converted.
+		for(String attr :  nodeAttr.keySet()) {
+			if(imageKeywords.containsKey(attr)) {
+
+				//if element has width, height, alignment attributes it will be puted frame
+				if(widthHeightAlignFlag && (attr.equals("width") || attr.equals("height") || attr.equals("alignment"))) {
+					widthHeightAlignFlag = false;
+					str += this.frameAccumulator(nodeAttr, frame);
+				}
+				if(attr.equals("background-color"))
+					str += this.setElementColor(imageKeywords.get("background-color"), nodeAttr.get("background-color"));
+
+				if(attr.equals("text-color"))
+					str += this.setElementColor(imageKeywords.get("text-color"), nodeAttr.get("background-color"));
+
+			}else{
+				System.out.println("ERROR: " + attr + " is not attribute of TEXT");
+			}
+		}
+
 		return str;
 	}
 	
@@ -178,10 +222,6 @@ public class IosMapAttribute {
 					str += this.frameAccumulator(nodeAttr, frame);
 				}
 				//if element has minWidth, minHeight, maxWidth, maxHeight attributes it will be puted frame
-				else if(minMaxWidthHeightFlag && (attr.equals("minWidth") || attr.equals("minHeight") || attr.equals("maxHeight") || attr.equals("maxWidth"))) {
-					minMaxWidthHeightFlag = false;
-					str += this.frameAccumulator(nodeAttr, frameMinMax);
-				}
 				
 				if(attr.equals("background-color"))
 					str += this.setElementColor(buttonKeywords.get("background-color"), nodeAttr.get("background-color"));
@@ -213,35 +253,69 @@ public class IosMapAttribute {
 		double red = color1.getRed();
 		double green = color1.getGreen();
 
-		return "\n"+ attr + "Color(red:"+red +", green:"+green+", blue: "+blue + "))\n";
+		return "\n"+ attr + "Color(red:"+red +"/255, green:"+green+"/255, blue: "+blue + "/255))\n";
 	}
 	
 	//Accumulate all frame attributes width, height, minHeight, maxWidth etc. with it spcefici frame map variable
 	public String frameAccumulator(Map<String, String> nodeAttr, Map<String, String> frame){
 		String accumulator = "";
 		int i=0;
+
+		if(nodeAttr.containsKey("width")) {
+			i++;
+			accumulator += "width: ";
+			accumulator += nodeAttr.get("width").replace("px", "").trim();
+		}
 		
-		for(Object attr : frame.keySet().toArray()){
-			if(nodeAttr.containsKey(attr)) {
-				//this for frame(width: 100, height: 200) in first index ',' will not add to head.
-				if(i != 0)
-					accumulator += ", ";
-				
-				accumulator += frame.get(attr)+": ";
-				if(nodeAttr.get(attr).contains("px"))
-					accumulator += nodeAttr.get(attr).replace("px", "");
-				else
-					//alignment
-					accumulator += "."+ nodeAttr.get(attr);
-					
-				i++;
-			}
+		if(nodeAttr.containsKey("height")) {
+			if(i != 0)
+				accumulator += ", ";
+			accumulator += "height: ";
+			accumulator += nodeAttr.get("height").replace("px", "").trim();
+			i++;
+		}
+		
+		if(nodeAttr.containsKey("alignment")) {
+			if(i != 0)
+				accumulator += ", ";
+			accumulator += "alignment: ";
+			accumulator += "."+ nodeAttr.get("alignment").trim();
+		}
+		
+	
+		if(!accumulator.equals("")) return ".frame("+accumulator+ ")\n";
+		else return "";
+	}
+	
+	public String frameMinMaxAccumulator(Map<String, String> nodeAttr, Map<String, String> frame){
+ 		String accumulator = "";
+		int seperatorCount=0;
+
+		String []arr = {
+				"minWidth", "maxWidth", "alignment"
+		};
+		String []arrDefault = {
+				"0", ".infinity", ".topLeading"
+		};
+		
+		for(int idx=0; idx<arr.length; idx++) {
+			String key = arr[idx];
+			if(seperatorCount != 0)
+				accumulator += ", ";
+			accumulator += key+": ";
+			if(key.equals("alignment"))
+				accumulator += (nodeAttr.get(key) != null ?  "." + nodeAttr.get(key) : arrDefault[idx]).trim();
+			else
+				accumulator += (nodeAttr.get(key) != null ? nodeAttr.get(key) : arrDefault[idx]).trim();
+			seperatorCount++;
 		}
 		
 		if(!accumulator.equals("")) return ".frame("+accumulator+ ")\n";
 		else return "";
 	}
 	
+	
+
 	//this for padding tag
 	public String setPadding(String val) {
 		return ".padding("+val.replace("px", "")+")";

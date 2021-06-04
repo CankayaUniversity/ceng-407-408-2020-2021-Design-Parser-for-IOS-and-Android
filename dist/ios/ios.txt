@@ -1,57 +1,64 @@
 VStack{
-	VStack{
+	HStack(alignment: .top, spacing: 0){
 
-	VStack{
+	HStack(alignment: .top, spacing: 0){
 
-	VStack{
+	HStack(alignment: .top, spacing: 0){
 
-	VStack{
+	HStack(alignment: .top, spacing: 0){
 
 	Text("extererere         ") 
-.background(Color(red:255.0, green:255.0, blue: 0.0))
+.background(Color(red:255.0/255, green:255.0/255, blue: 0.0/255))
 
-.foregroundColor(Color(red:255.0, green:255.0, blue: 0.0))
+.foregroundColor(Color(red:255.0/255, green:255.0/255, blue: 255.0/255))
 } 
 } 
 } 
 
 	Text("sol sol text") 
-.background(Color(red:0.0, green:255.0, blue: 255.0))
+.background(Color(red:0.0/255, green:255.0/255, blue: 255.0/255))
 } 
+.frame(minWidth: 0, maxWidth: .infinity, alignment: .topLeading)
 
-.background(Color(red:0.0, green:0.0, blue: 0.0))
+.background(Color(red:0.0/255, green:0.0/255, blue: 0.0/255))
 
-	VStack{
+	HStack(alignment: .top, spacing: 0){
 
-	HStack{
+	HStack(alignment: .top, spacing: 0){
 
 	Text("sol sag sol text") 
-.background(Color(red:255.0, green:165.0, blue: 0.0))
-.frame(width: . 100, height: . 120)
+.background(Color(red:255.0/255, green:165.0/255, blue: 0.0/255))
 
-.foregroundColor(Color(red:255.0, green:165.0, blue: 0.0))
+.foregroundColor(Color(red:255.0/255, green:255.0/255, blue: 255.0/255))
 
 	Text("sol sag sol text") 
-.background(Color(red:255.0, green:165.0, blue: 0.0))
+.background(Color(red:255.0/255, green:165.0/255, blue: 0.0/255))
 } 
-.frame(width: . 300, alignment: .top, height: . 200)
+.frame(minWidth: 0, maxWidth: .infinity, alignment: .top)
+.frame(alignment: .top)
 
 	Text("bu sol sag text text") 
-.background(Color(red:210.0, green:105.0, blue: 30.0))
-.frame(width: .100)
-.frame(minWidth: .200)
-Image(
-	Button(""){ //this area created for your purpose
+.background(Color(red:210.0/255, green:105.0/255, blue: 30.0/255))
+
+	Image("trya") .resizable()
+.scaledToFit()
+
+.background(Color(red:210.0/255, green:105.0/255, blue: 30.0/255))
+
+	Button("dda"){ //this area created for your purpose
 } 
 
-.background(Color(red:210.0, green:105.0, blue: 30.0))
-.padding( 50).font(.custom("", size: 20 ))
-.frame(width: .100)
-.frame(minWidth: .200)
+.background(Color(red:210.0/255, green:105.0/255, blue: 30.0/255))
+.font(.custom("", size: 20 ))
+.frame(width: 40)
 } 
 
  Spacer() 
  } 
+.frame(minWidth: 0, maxWidth: .infinity, alignment: .top)
 
-.background(Color(red:255.0, green:0.0, blue: 0.0))
-.frame(width: . 50)
+.background(Color(red:255.0/255, green:0.0/255, blue: 0.0/255))
+.frame(alignment: .top)
+
+ .flipsForRightToLeftLayoutDirection(true)
+ .environment(\.layoutDirection, .leftToRight)
