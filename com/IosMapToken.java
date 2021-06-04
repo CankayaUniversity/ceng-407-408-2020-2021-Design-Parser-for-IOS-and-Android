@@ -34,8 +34,8 @@ public class IosMapToken {
 		if(node.getToken().Type() == VIEW) {
 			Map<String, String> nodeAttr = node.getAttribute().getKeywords();
 
-			//orientation can be vertical, horizontal default value is vertical
-			String orientation = "vertical";
+			//orientation can be vertical, horizontal default value is horizontal
+			String orientation = "horizontal";
  			if(nodeAttr.get("orientation") != null)
 				orientation = nodeAttr.get("orientation");
 			 
@@ -43,7 +43,7 @@ public class IosMapToken {
 			if(orientation.equals("vertical"))
 				str += "\n\t"+keywords.get(VIEW);
 			else if(orientation.equals("horizontal"))
-				str += "\n\t"+keywords.get(VIEW_H);
+				str += "\n\t"+keywords.get(VIEW_H)+"(alignment: .top, spacing: 0)";
 
 			//for look if there is constructor properties like gravity this is like accumulator.
 			int i=0;
@@ -70,6 +70,10 @@ public class IosMapToken {
 		else if(node.getToken().Type() == TEXT) {
 			str += "\n\t"+keywords.get(TEXT);
 			str +=  "(\""+node.getAttribute().getKeywords().get("text")+"\") ";
+		}
+		else if(node.getToken().Type() == IMAGE) {
+			str += "\n\t"+keywords.get(IMAGE);
+			str +=  "(\""+node.getAttribute().getKeywords().get("src").split(".png")[0]+"\") ";
 		}
 		//Ex button layout
 		//Button("text"){ ... }
