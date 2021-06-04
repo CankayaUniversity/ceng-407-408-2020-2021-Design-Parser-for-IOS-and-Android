@@ -76,11 +76,24 @@ public class Lexer {
             }
             this.start++;
             String text = this.source.substring(this.start, this.current);
-            if(tokenType == IMAGE)
+            if(tokenType == IMAGE) {
+            	attribute.addAttribute("img", "scaletofit");
             	attribute.addAttribute("src", text);
-            else
+            }
+            else {
+            	attribute.addAttribute("textsize", "15");
+            	attribute.addAttribute("text-color", "#000000");
             	attribute.addAttribute("text", text);
+            	attribute.addAttribute("alignment", "left");
+            }
         }
+        else if (tokenType == VIEW) {
+        	attribute.addAttribute("orientation", "horizontal");
+        	attribute.addAttribute("alignment", "top");
+        }
+
+        attribute.addAttribute("width", "match_parent");
+        attribute.addAttribute("background-color", "#ffffff");
 
         if (attribute != null)
             node.setAttribute(attribute);
