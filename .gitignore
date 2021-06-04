@@ -4,3 +4,5 @@
 .project
 *.vs
 *.class
+*ios.txt
+*android.txt
