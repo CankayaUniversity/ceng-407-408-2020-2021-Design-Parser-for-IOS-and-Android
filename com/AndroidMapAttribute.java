@@ -85,6 +85,7 @@ public class AndroidMapAttribute{
         keywords.put("VIEW_minWidth" , new KeywordAdapter(false, "setMinimumWidth( = ", 1));
         keywords.put("VIEW_minHeight" , new KeywordAdapter(false, "setMinimumWidth( = ", 1));
         keywords.put("VIEW_orientation" , new KeywordAdapter(false, true, "setOrientation(LinearLayout.", 1));
+        keywords.put("VIEW_padding" , new KeywordAdapter(false, true, "setPadding(", 1));
         
         //SCROLLVIEW
         keywords.put("SCROLLVIEW_background-color" , new KeywordAdapter("setBackgroundColor(Color.parseColor(", 2));
@@ -93,6 +94,7 @@ public class AndroidMapAttribute{
         keywords.put("SCROLLVIEW_height" , new KeywordAdapter(false, "getLayoutParams().height = ", 0));
         keywords.put("SCROLLVIEW_minWidth" , new KeywordAdapter(false, "setMinimumWidth( = ", 1));
         keywords.put("SCROLLVIEW_minHeight" , new KeywordAdapter(false, "setMinimumWidth( = ", 1));
+        keywords.put("SCROLLVIEW_padding" , new KeywordAdapter(false, true, "setPadding(", 1));
         
         //TEXT
         keywords.put("TEXT_background-color" , new KeywordAdapter("setBackgroundColor(Color.parseColor(", 2));
@@ -104,6 +106,7 @@ public class AndroidMapAttribute{
         keywords.put("TEXT_height" , new KeywordAdapter(false, "getLayoutParams().height = ", 0));
         keywords.put("TEXT_minWidth" , new KeywordAdapter(false, "setMinimumWidth( = ", 1));
         keywords.put("TEXT_minHeight" , new KeywordAdapter(false, "setMinimumWidth( = ", 1));
+        keywords.put("TEXT_padding" , new KeywordAdapter(false, true, "setPadding(", 1));
         
         //BUTTON
         keywords.put("BUTTON_background-color" , new KeywordAdapter("setBackgroundColor(Color.parseColor(", 2));
@@ -115,6 +118,7 @@ public class AndroidMapAttribute{
         keywords.put("BUTTON_height" , new KeywordAdapter(false, "getLayoutParams().height = ", 0));
         keywords.put("BUTTON_minWidth" , new KeywordAdapter(false, "setMinimumWidth( = ", 1));
         keywords.put("BUTTON_minHeight" , new KeywordAdapter(false, "setMinimumWidth( = ", 1));
+        keywords.put("BUTTON_padding" , new KeywordAdapter(false, true, "setPadding(", 1));
         
         //IMAGE
         keywords.put("IMAGE_background-color" , new KeywordAdapter("setBackgroundColor(Color.parseColor(", 2));
@@ -125,6 +129,7 @@ public class AndroidMapAttribute{
         keywords.put("IMAGE_height" , new KeywordAdapter(false, "getLayoutParams().height = ", 0));
         keywords.put("IMAGE_minWidth" , new KeywordAdapter(false, "setMinimumWidth( = ", 1));
         keywords.put("IMAGE_minHeight" , new KeywordAdapter(false, "setMinimumWidth( = ", 1));
+        keywords.put("IMAGE_padding" , new KeywordAdapter(false, true, "setPadding(", 1));
     }
    
     public String ToString(Node node){
