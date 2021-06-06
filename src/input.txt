@@ -2,7 +2,7 @@
     <View style="background-color:#000000;">
         <View>
             <View>
-                <View>
+                <View style="width:match_parent;">
                     <Text style="background-color:#ffff00;text-color: #ffffff;">extererere         </Text>
                 </View>
             </View>
@@ -16,6 +16,6 @@
         </View>
         <Text style="background-color:#d2691e;minWidth:200;width: 100;">bu sol sag text text</Text>
         <Image style="background-color:#d2691e;minWidth:200;width: 100;">trya.png</Text>
-        <Button style="background-color:#d2691e;minWidth:200;width: 100;text-size: 20;width:40;>dda</Button>
+        <Button style="background-color:#d2691e;minWidth:200;width: 100;text-size: 20;width:40;padding: 1,1,1,1;>dda</Button>
     </View>
 </View>
