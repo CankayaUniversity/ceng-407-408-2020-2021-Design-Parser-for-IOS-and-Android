@@ -52,6 +52,7 @@ ll_1_2.setMinimumWidth( = 200);
 Button ll_1_3 = new Button (this); 
 ll_1.addView(ll_1_3); 
 ll_1_3.setBackgroundColor(Color.parseColor("#d2691e"));
+ll_1_3.setPadding(null);
 ll_1_3.getLayoutParams().width = 40;
 ll_1_3.setMinimumWidth( = 200);
 ll_1_3.setTextColor(Color.parseColor("#000000"));

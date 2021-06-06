@@ -129,8 +129,16 @@ public class SyntaxTree implements Runnable {
             this.iosWalker(current.getChildren().get(i));
     		
             TokenType currentToken = current.getChildren().get(i).getToken().Type();
-    		if(currentToken == VIEW || currentToken == VIEW_H || currentToken == BUTTON)
-            	this.ios_source += "} \n";
+    		if(currentToken == VIEW || currentToken == VIEW_H || currentToken == BUTTON) {
+    			
+    			this.ios_source += "} \n";
+    			
+    			if(current.getChildren().get(i).getAttribute().getKeywords().containsKey("width"))
+    				if(current.getChildren().get(i).getAttribute().getKeywords().get("width").trim().equals("match_parent"))
+    					this.ios_source += ".frame(minWidth: 0, maxWidth: .infinity, alignment: .topLeading)\n";
+    		
+    		}
+            	
     		    		
             this.ios_source += this.iosMapAttribute.toString(current.getChildren().get(i), current.getId(), i);
     	}

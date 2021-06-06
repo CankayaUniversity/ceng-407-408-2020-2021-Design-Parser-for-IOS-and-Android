@@ -12,12 +12,13 @@ VStack{
 .font(.custom("", size:15 ))
 
 .foregroundColor(Color(red:255.0/255, green:255.0/255, blue: 255.0/255))
-.frame(alignment: .left)
+.frame(alignment: .leading)
 } 
+.frame(minWidth: 0, maxWidth: .infinity, alignment: .topLeading)
 
 .background(Color(red:255.0/255, green:255.0/255, blue: 255.0/255))
 .frame(alignment: .top)
-.frame(minWidth: 0, maxWidth: .infinity, alignment: .topLeading)} 
+} 
 
 .background(Color(red:255.0/255, green:255.0/255, blue: 255.0/255))
 .frame(alignment: .top)
@@ -31,7 +32,7 @@ VStack{
 .font(.custom("", size:15 ))
 
 .foregroundColor(Color(red:0.0/255, green:0.0/255, blue: 0.0/255))
-.frame(alignment: .left)
+.frame(alignment: .leading)
 } 
 
 .background(Color(red:0.0/255, green:0.0/255, blue: 0.0/255))
@@ -46,14 +47,14 @@ VStack{
 .font(.custom("", size: 25 ))
 
 .foregroundColor(Color(red:255.0/255, green:255.0/255, blue: 255.0/255))
-.frame(alignment: .left)
+.frame(alignment: .leading)
 
 	Text("sol sag sol text") 
 .background(Color(red:255.0/255, green:165.0/255, blue: 0.0/255))
 .font(.custom("", size:15 ))
 
 .foregroundColor(Color(red:0.0/255, green:0.0/255, blue: 0.0/255))
-.frame(alignment: .left)
+.frame(alignment: .leading)
 } 
 
 .background(Color(red:255.0/255, green:255.0/255, blue: 255.0/255))
@@ -62,7 +63,7 @@ VStack{
 	Text("bu sol sag text text") 
 .background(Color(red:210.0/255, green:105.0/255, blue: 30.0/255))
 .font(.custom("", size:15 ))
-.frame(width: 100, alignment: .left)
+.frame(width: 100, alignment: .leading)
 
 .foregroundColor(Color(red:0.0/255, green:0.0/255, blue: 0.0/255))
 
@@ -76,8 +77,8 @@ VStack{
 } 
 
 .background(Color(red:210.0/255, green:105.0/255, blue: 30.0/255))
-.padding(.left,  1).padding(.top, 1).padding(.right, 1).padding(.bottom, 1).font(.custom("", size: 20 ))
-.frame(width: 40, alignment: .left)
+.padding(.leading,  1).padding(.top, 1).padding(.trailing, 1).padding(.bottom, 1).font(.custom("", size: 20 ))
+.frame(width: 40, alignment: .leading)
 
 .foregroundColor(Color(red:210.0/255, green:105.0/255, blue: 30.0/255))
 } 

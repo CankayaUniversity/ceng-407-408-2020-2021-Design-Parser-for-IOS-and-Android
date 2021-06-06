@@ -108,10 +108,10 @@ public class IosMapAttribute {
 					str += this.frameAccumulator(nodeAttr);
 				}
 				//if element has minWidth, minHeight, maxWidth, maxHeight attributes it will be puted frame
-				if(attr.equals("width")) {
+			/*	if(attr.equals("width")) {
 					if(nodeAttr.get("width").trim().equals("match_parent"))
 						str += this.frameMinMaxAccumulator(nodeAttr);
-				}
+				}*/
 				
 				if(attr.equals("background-color"))
 					str += this.setElementColor(viewKeywords.get("background-color"), nodeAttr.get("background-color"));
@@ -215,10 +215,10 @@ public class IosMapAttribute {
 					str += this.frameAccumulator(nodeAttr);
 				}
 				//if element has minWidth, minHeight, maxWidth, maxHeight attributes it will be puted frame
-				if(attr.equals("width")) {
+		/*		if(attr.equals("width")) {
 					if(nodeAttr.get("width").trim().equals("match_parent"))
 						str += this.frameMinMaxAccumulator(nodeAttr);
-				}
+				}*/
 
 				if(attr.equals("background-color"))
 					str += this.setElementColor(buttonKeywords.get("background-color"), nodeAttr.get("background-color"));
@@ -279,7 +279,15 @@ public class IosMapAttribute {
 			if(i != 0)
 				accumulator += ", ";
 			accumulator += "alignment: ";
-			accumulator += "."+ nodeAttr.get("alignment").trim();
+			
+			if(nodeAttr.get("alignment").trim().equals("left"))
+				accumulator += ".leading";
+			if(nodeAttr.get("alignment").trim().equals("top"))
+				accumulator += ".top";
+			if(nodeAttr.get("alignment").trim().equals("right"))
+				accumulator += ".trailing";
+			if(nodeAttr.get("alignment").trim().equals("bottom"))
+				accumulator += ".bottom";
 		}
 		
 		if(!accumulator.equals("")) return ".frame("+accumulator+ ")\n";
@@ -319,11 +327,11 @@ public class IosMapAttribute {
 		String ac = "";
 
 		if(points[0] != null)
-			ac += ".padding(.left, "+points[0]+")";
+			ac += ".padding(.leading, "+points[0]+")";
 		if(points[1] != null)
 			ac += ".padding(.top, "+points[1]+")";
 		if(points[2] != null)
-			ac += ".padding(.right, "+points[2]+")";
+			ac += ".padding(.trailing, "+points[2]+")";
 		if(points[3] != null)
 			ac += ".padding(.bottom, "+points[3]+")";
 		
