@@ -19,6 +19,8 @@ public class AndroidMapAttribute{
         	gravityKeys.put("rightBottom", "RIGHT | GRAVITY.BOTTOM");
         	gravityKeys.put("horizontal", "HORIZONTAL");
         	gravityKeys.put("vertical", "VERTICAL");
+        	gravityKeys.put("match_parent", "300");
+        	gravityKeys.put(".png", "");
         }
         private String str;
         private int bracketCount;
@@ -70,7 +72,10 @@ public class AndroidMapAttribute{
 				if(gravityKeys.containsKey(holder))
 					ret = holder;
 			}
-			return gravityKeys.get(ret);
+			if(ret.length() > 1)
+				return gravityKeys.get(ret);
+			else
+				return value;
 		}
     }
 
@@ -80,20 +85,20 @@ public class AndroidMapAttribute{
         //VIEW
         keywords.put("VIEW_background-color" , new KeywordAdapter("setBackgroundColor(Color.parseColor(", 2));
         keywords.put("VIEW_gravity" , new KeywordAdapter(false, true, "setGravity(GRAVITY.", 1));
-        keywords.put("VIEW_width" , new KeywordAdapter(false, "getLayoutParams().width = ", 0));
-        keywords.put("VIEW_height" , new KeywordAdapter(false, "getLayoutParams().height = ", 0));
-        keywords.put("VIEW_minWidth" , new KeywordAdapter(false, "setMinimumWidth( = ", 1));
-        keywords.put("VIEW_minHeight" , new KeywordAdapter(false, "setMinimumWidth( = ", 1));
+        keywords.put("VIEW_width" , new KeywordAdapter(false, true, "getLayoutParams().width = ", 0));
+        keywords.put("VIEW_height" , new KeywordAdapter(false, true, "getLayoutParams().height = ", 0));
+        keywords.put("VIEW_minWidth" , new KeywordAdapter(false, "setMinimumWidth(", 1));
+        keywords.put("VIEW_minHeight" , new KeywordAdapter(false, "setMinimumWidth(", 1));
         keywords.put("VIEW_orientation" , new KeywordAdapter(false, true, "setOrientation(LinearLayout.", 1));
         keywords.put("VIEW_padding" , new KeywordAdapter(false, true, "setPadding(", 1));
         
         //SCROLLVIEW
         keywords.put("SCROLLVIEW_background-color" , new KeywordAdapter("setBackgroundColor(Color.parseColor(", 2));
         keywords.put("SCROLLVIEW_gravity" , new KeywordAdapter(false, true, "setGravity(GRAVITY.", 1));
-        keywords.put("SCROLLVIEW_width" , new KeywordAdapter(false, "getLayoutParams().width = ", 0));
-        keywords.put("SCROLLVIEW_height" , new KeywordAdapter(false, "getLayoutParams().height = ", 0));
-        keywords.put("SCROLLVIEW_minWidth" , new KeywordAdapter(false, "setMinimumWidth( = ", 1));
-        keywords.put("SCROLLVIEW_minHeight" , new KeywordAdapter(false, "setMinimumWidth( = ", 1));
+        keywords.put("SCROLLVIEW_width" , new KeywordAdapter(false, true, "getLayoutParams().width = ", 0));
+        keywords.put("SCROLLVIEW_height" , new KeywordAdapter(false, true, "getLayoutParams().height = ", 0));
+        keywords.put("SCROLLVIEW_minWidth" , new KeywordAdapter(false, "setMinimumWidth(", 1));
+        keywords.put("SCROLLVIEW_minHeight" , new KeywordAdapter(false, "setMinimumWidth(", 1));
         keywords.put("SCROLLVIEW_padding" , new KeywordAdapter(false, true, "setPadding(", 1));
         
         //TEXT
@@ -102,10 +107,10 @@ public class AndroidMapAttribute{
         keywords.put("TEXT_textsize" , new KeywordAdapter(false, "setTextSize(", 1));
         keywords.put("TEXT_text-color" , new KeywordAdapter("setTextColor(Color.parseColor(", 2));
         keywords.put("TEXT_gravity" , new KeywordAdapter(false, true, "setGravity(GRAVITY.", 1));
-        keywords.put("TEXT_width" , new KeywordAdapter(false, "getLayoutParams().width = ", 0));
-        keywords.put("TEXT_height" , new KeywordAdapter(false, "getLayoutParams().height = ", 0));
-        keywords.put("TEXT_minWidth" , new KeywordAdapter(false, "setMinimumWidth( = ", 1));
-        keywords.put("TEXT_minHeight" , new KeywordAdapter(false, "setMinimumWidth( = ", 1));
+        keywords.put("TEXT_width" , new KeywordAdapter(false, true, "getLayoutParams().width = ", 0));
+        keywords.put("TEXT_height" , new KeywordAdapter(false, true, "getLayoutParams().height = ", 0));
+        keywords.put("TEXT_minWidth" , new KeywordAdapter(false, "setMinimumWidth(", 1));
+        keywords.put("TEXT_minHeight" , new KeywordAdapter(false, "setMinimumWidth(", 1));
         keywords.put("TEXT_padding" , new KeywordAdapter(false, true, "setPadding(", 1));
         
         //BUTTON
@@ -114,21 +119,21 @@ public class AndroidMapAttribute{
         keywords.put("BUTTON_textsize" , new KeywordAdapter(false, "setTextSize(", 1));
         keywords.put("BUTTON_text-color" , new KeywordAdapter("setTextColor(Color.parseColor(", 2));
         keywords.put("BUTTON_gravity" , new KeywordAdapter(false, true, "setGravity(GRAVITY.", 1));
-        keywords.put("BUTTON_width" , new KeywordAdapter(false, "getLayoutParams().width = ", 0));
-        keywords.put("BUTTON_height" , new KeywordAdapter(false, "getLayoutParams().height = ", 0));
-        keywords.put("BUTTON_minWidth" , new KeywordAdapter(false, "setMinimumWidth( = ", 1));
-        keywords.put("BUTTON_minHeight" , new KeywordAdapter(false, "setMinimumWidth( = ", 1));
+        keywords.put("BUTTON_width" , new KeywordAdapter(false, true, "getLayoutParams().width = ", 0));
+        keywords.put("BUTTON_height" , new KeywordAdapter(false, true, "getLayoutParams().height = ", 0));
+        keywords.put("BUTTON_minWidth" , new KeywordAdapter(false, "setMinimumWidth(", 1));
+        keywords.put("BUTTON_minHeight" , new KeywordAdapter(false, "setMinimumWidth(", 1));
         keywords.put("BUTTON_padding" , new KeywordAdapter(false, true, "setPadding(", 1));
         
         //IMAGE
         keywords.put("IMAGE_background-color" , new KeywordAdapter("setBackgroundColor(Color.parseColor(", 2));
-        keywords.put("IMAGE_src" , new KeywordAdapter("setImageResource(R.drawable.", 1));
+        keywords.put("IMAGE_src" , new KeywordAdapter(false, true, "setImageResource(R.drawable.", 1));
         keywords.put("IMAGE_text-color" , new KeywordAdapter("setTextColor(Color.parseColor(", 2));
         keywords.put("IMAGE_gravity" , new KeywordAdapter(false, true, "setGravity(GRAVITY.", 1));
-        keywords.put("IMAGE_width" , new KeywordAdapter(false, "getLayoutParams().width = ", 0));
-        keywords.put("IMAGE_height" , new KeywordAdapter(false, "getLayoutParams().height = ", 0));
-        keywords.put("IMAGE_minWidth" , new KeywordAdapter(false, "setMinimumWidth( = ", 1));
-        keywords.put("IMAGE_minHeight" , new KeywordAdapter(false, "setMinimumWidth( = ", 1));
+        keywords.put("IMAGE_width" , new KeywordAdapter(false, true, "getLayoutParams().width = ", 0));
+        keywords.put("IMAGE_height" , new KeywordAdapter(false, true, "getLayoutParams().height = ", 0));
+        keywords.put("IMAGE_minWidth" , new KeywordAdapter(false, "setMinimumWidth(", 1));
+        keywords.put("IMAGE_minHeight" , new KeywordAdapter(false, "setMinimumWidth(", 1));
         keywords.put("IMAGE_padding" , new KeywordAdapter(false, true, "setPadding(", 1));
     }
    
