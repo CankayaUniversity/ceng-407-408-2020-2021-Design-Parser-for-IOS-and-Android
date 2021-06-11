@@ -130,7 +130,7 @@ public class SyntaxTree implements Runnable {
             this.iosWalker(current.getChildren().get(i));
     		
             TokenType currentToken = current.getChildren().get(i).getToken().Type();
-    		if(currentToken == VIEW || currentToken == VIEW_H || currentToken == BUTTON) {
+    		if(currentToken == VIEW || currentToken == VIEW_H || currentToken == BUTTON || currentToken == SCROLLVIEW) {
     			
     			this.ios_source += "} \n";
     			

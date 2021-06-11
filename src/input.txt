@@ -4,9 +4,29 @@
 
 
 <View style="background-color:#68ABD9;">
-	<View style="orientation:vertical;width:match_parent;padding:10,10,10,10;">
-		<View style="width:match_parent;alignment:center;height: 100;">
-			<Text>sdfsdf</Text>
+	<ScrollView style="height:300;">
+		<View style="orientation:vertical;padding:10,10,10,10;alignment:center;">
+			<View style="width:match_parent;alignment:center;height: 100;">
+				<Text>sdfsdf</Text>
+			</View>
+			<View style="width:match_parent;alignment:center;height: 100;">
+				<Text>sdfsdf</Text>
+			</View>
+			<View style="width:match_parent;alignment:center;height: 100;">
+				<Text>sdfsdf</Text>
+			</View>
+			<View style="width:match_parent;alignment:center;height: 100;">
+				<Text>sdfsdf</Text>
+			</View>
+			<View style="width:match_parent;alignment:center;height: 100;">
+				<Text>sdfsdf</Text>
+			</View>
+			<View style="width:match_parent;alignment:center;height: 100;">
+				<Text>sdfsdf</Text>
+			</View>
+			<View style="width:match_parent;alignment:center;height: 100;">
+				<Text>sdfsdf</Text>
+			</View>
 		</View>
-	</View>
+	</ScrollView>
 </View>

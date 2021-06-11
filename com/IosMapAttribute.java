@@ -6,6 +6,7 @@ import java.util.Map;
 
 public class IosMapAttribute {
 	private static final Map<String, String> viewKeywords;
+	private static final Map<String, String> scrollViewKeywords;
 	private static final Map<String, String> textKeywords;
 	private static final Map<String, String> buttonKeywords;
 	private static final Map<String, String> imageKeywords;	
@@ -22,6 +23,21 @@ public class IosMapAttribute {
 		viewKeywords.put("maxHeight", "maxHeight");
 		viewKeywords.put("padding", "padding");
 		viewKeywords.put("maxWidth", "maxWidth");
+		
+		
+		scrollViewKeywords = new HashMap<>();
+		scrollViewKeywords.put("background-color", ".background(");
+		scrollViewKeywords.put("alignment", "alignment");
+		scrollViewKeywords.put("width", "width");
+		scrollViewKeywords.put("height", "height");
+		scrollViewKeywords.put("alignment", "alignment");
+		scrollViewKeywords.put("orientation", "orientation");
+		scrollViewKeywords.put("minHeight", "minHeight");
+		scrollViewKeywords.put("minWidth", "minWidth");
+		scrollViewKeywords.put("maxHeight", "maxHeight");
+		scrollViewKeywords.put("padding", "padding");
+		scrollViewKeywords.put("maxWidth", "maxWidth");
+		
 		
 		imageKeywords = new HashMap<>();
 		imageKeywords.put("background-color", ".background(");
@@ -85,6 +101,9 @@ public class IosMapAttribute {
 		case IMAGE:
 			str+= this.imageAttribute(nodeAttr);
 			break;
+		case SCROLLVIEW:
+			str += this.scrollViewAttribute(nodeAttr);
+			break;
 		default:
 			break;
 		}
@@ -129,6 +148,43 @@ public class IosMapAttribute {
 		return str;
 	}
 		
+	public String scrollViewAttribute(Map<String, String> nodeAttr) {
+		String str = "";
+		boolean widthHeightAlignFlag = true;
+		boolean minMaxWidthHeightFlag = true;
+		
+		//convert map to array
+		//this now work for color it will be converted.
+		for(String attr :  nodeAttr.keySet()) {
+			if(viewKeywords.containsKey(attr)) {
+			
+				//if element has width, height, alignment attributes it will be puted frame
+				if(widthHeightAlignFlag && (attr.equals("width") || attr.equals("height") || attr.equals("alignment"))) {
+					widthHeightAlignFlag = false;
+					str += this.frameAccumulator(nodeAttr);
+				}
+				//if element has minWidth, minHeight, maxWidth, maxHeight attributes it will be puted frame
+			/*	if(attr.equals("width")) {
+					if(nodeAttr.get("width").trim().equals("match_parent"))
+						str += this.frameMinMaxAccumulator(nodeAttr);
+				}*/
+				
+				if(attr.equals("background-color"))
+					str += this.setElementColor(viewKeywords.get("background-color"), nodeAttr.get("background-color"));
+				
+				if(attr.equals("text-color"))
+					str += this.setElementColor(viewKeywords.get("text-color"), nodeAttr.get("background-color"));
+				
+				if(attr.equals("padding"))
+					str += this.setPadding(nodeAttr.get("padding"));
+				
+			}else{
+				System.out.println("ERROR: " + attr + " is not attribute of VIEW");
+			}
+		}
+		return str;
+	}
+	
 	public String textAttribute(Map<String, String> nodeAttr) {
 		String str = "";
 		boolean widthHeightAlignFlag = true;

@@ -1,4 +1,5 @@
 VStack{
+	ScrollView(.vertical)
 	VStack{
 
 	HStack(alignment: .top, spacing: 0){
@@ -15,10 +16,12 @@ VStack{
 .background(Color(red:255.0/255, green:255.0/255, blue: 255.0/255))
 .frame(height: 100, alignment: .center)
 } 
-.frame(minWidth: 0, maxWidth: .infinity,alignment:.topLeading)
 
 .background(Color(red:255.0/255, green:255.0/255, blue: 255.0/255))
-.padding(.leading, 10).padding(.top, 10).padding(.trailing, 10).padding(.bottom, 10).frame(alignment: .top)
+.padding(.leading, 10).padding(.top, 10).padding(.trailing, 10).padding(.bottom, 10).frame(alignment: .center)
+} 
+
+.background(Color(red:255.0/255, green:255.0/255, blue: 255.0/255))
 
  Spacer() 
  } 

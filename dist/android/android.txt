@@ -6,7 +6,6 @@ ll.addView(ll_0);
 ll_0.setBackgroundColor(Color.parseColor("#ffffff"));
 ll_0.setPadding(10,10,10,10);
 ll_0.setOrientation(LinearLayout.VERTICAL);
-ll_0.getLayoutParams().width = 300;
 LinearLayout ll_0_0 = new LinearLayout (this); 
 ll_0.addView(ll_0_0); 
 ll_0_0.setBackgroundColor(Color.parseColor("#ffffff"));

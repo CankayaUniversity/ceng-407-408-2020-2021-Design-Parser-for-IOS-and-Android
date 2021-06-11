@@ -144,6 +144,7 @@ public class Lexer {
     static {
         keywords = new HashMap<>();
         keywords.put("View", VIEW);
+        keywords.put("ScrollView", SCROLLVIEW);
         keywords.put("Text", TEXT);
         keywords.put("Button", BUTTON);
         keywords.put("Image", IMAGE);

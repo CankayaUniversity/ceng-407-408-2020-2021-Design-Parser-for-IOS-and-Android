@@ -13,9 +13,11 @@ public class IosMapToken {
 		keywords = new HashMap<>();
 		keywords.put(VIEW, "VStack");
 		keywords.put(VIEW_H, "HStack");
+		keywords.put(SCROLLVIEW, "ScrollView");
 		keywords.put(TEXT, "Text");
 		keywords.put(BUTTON, "Button");
 		keywords.put(IMAGE, "Image");
+		
 		
 		//this for constructor properties
 		alignment = new HashMap<>();
@@ -74,6 +76,10 @@ public class IosMapToken {
 		else if(node.getToken().Type() == IMAGE) {
 			str += "\n\t"+keywords.get(IMAGE);
 			str +=  "(\""+node.getAttribute().getKeywords().get("src").split(".png")[0]+"\") ";
+		}
+		else if(node.getToken().Type() == SCROLLVIEW) {
+			str += "\n\t"+keywords.get(SCROLLVIEW);
+			str +=  "(.vertical){";
 		}
 		//Ex button layout
 		//Button("text"){ ... }
