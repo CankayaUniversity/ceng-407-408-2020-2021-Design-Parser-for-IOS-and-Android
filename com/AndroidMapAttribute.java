@@ -20,7 +20,7 @@ public class AndroidMapAttribute{
         	gravityKeys.put("rightBottom", "RIGHT | GRAVITY.BOTTOM");
         	gravityKeys.put("horizontal", "HORIZONTAL");
         	gravityKeys.put("vertical", "VERTICAL");
-        	gravityKeys.put("match_parent", "300");
+        	gravityKeys.put("match_parent", "ViewGroup.LayoutParams.MATCH_PARENT");
         	gravityKeys.put(".png", "");
         }
         private String str;
