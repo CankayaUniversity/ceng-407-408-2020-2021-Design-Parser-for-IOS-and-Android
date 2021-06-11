@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class AndroidMapAttribute{
+   
+    static int paramsCounter = 0;
 
     private static class KeywordAdapter{
         private static final HashMap<String, String> gravityKeys;
@@ -65,6 +67,18 @@ public class AndroidMapAttribute{
         	string += RepeatBrackets() + ";\n";
         	return string;
         }
+
+        public String GetString(String value, String ID){
+        	String string = "";
+
+        	string ="LinearLayout.LayoutParams params"+paramsCounter+" = new LinearLayout.LayoutParams(\n"
+        	        +"        "+ID+".getLayoutParams()\n"
+        	        +");\n"
+        	        +"params"+paramsCounter+".setMargins("+ value +");\n"
+        	        +ID+".setLayoutParams(params"+paramsCounter+");\n";
+        	paramsCounter++;
+        	return string;
+        }
 		private String GetGravity(String value) {
 			char [] charString = value.toCharArray();
 			String holder = "", ret = "";
@@ -112,7 +126,6 @@ public class AndroidMapAttribute{
         keywords.put("TEXT_height" , new KeywordAdapter(false, true, "getLayoutParams().height = ", 0));
         keywords.put("TEXT_minWidth" , new KeywordAdapter(false, "setMinimumWidth(", 1));
         keywords.put("TEXT_minHeight" , new KeywordAdapter(false, "setMinimumWidth(", 1));
-        keywords.put("TEXT_padding" , new KeywordAdapter(false, true, "setPadding(", 1));
         
         //BUTTON
         keywords.put("BUTTON_background-color" , new KeywordAdapter("setBackgroundColor(Color.parseColor(", 2));
@@ -124,7 +137,6 @@ public class AndroidMapAttribute{
         keywords.put("BUTTON_height" , new KeywordAdapter(false, true, "getLayoutParams().height = ", 0));
         keywords.put("BUTTON_minWidth" , new KeywordAdapter(false, "setMinimumWidth(", 1));
         keywords.put("BUTTON_minHeight" , new KeywordAdapter(false, "setMinimumWidth(", 1));
-        keywords.put("BUTTON_padding" , new KeywordAdapter(false, true, "setPadding(", 1));
         
         //IMAGE
         keywords.put("IMAGE_background-color" , new KeywordAdapter("setBackgroundColor(Color.parseColor(", 2));
@@ -135,14 +147,16 @@ public class AndroidMapAttribute{
         keywords.put("IMAGE_height" , new KeywordAdapter(false, true, "getLayoutParams().height = ", 0));
         keywords.put("IMAGE_minWidth" , new KeywordAdapter(false, "setMinimumWidth(", 1));
         keywords.put("IMAGE_minHeight" , new KeywordAdapter(false, "setMinimumWidth(", 1));
-        keywords.put("IMAGE_padding" , new KeywordAdapter(false, true, "setPadding(", 1));
     }
-   
+    
     public String ToString(Node node){
         String str = "";
         for(Map.Entry<String, String> pair : node.getAttribute().getKeywords().entrySet()){
         	if(keywords.get(node.getToken().Type() + "_" + pair.getKey()) != null) {
-                str += node.getId() + "." + keywords.get(node.getToken().Type() + "_" + pair.getKey()).GetString(pair.getValue().trim());
+        		if(pair.getKey().equals("padding") )
+        			str += keywords.get(node.getToken().Type() + "_" + pair.getKey()).GetString(pair.getValue().trim(), node.getId());
+        		else
+        			str += node.getId() + "." + keywords.get(node.getToken().Type() + "_" + pair.getKey()).GetString(pair.getValue().trim());
         	}
         }
         return str;
