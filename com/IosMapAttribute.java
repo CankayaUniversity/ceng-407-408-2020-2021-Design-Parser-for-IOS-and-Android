@@ -288,6 +288,8 @@ public class IosMapAttribute {
 				accumulator += ".trailing";
 			if(nodeAttr.get("alignment").trim().equals("bottom"))
 				accumulator += ".bottom";
+			if(nodeAttr.get("alignment").trim().equals("center"))
+				accumulator += ".center";
 		}
 		
 		if(!accumulator.equals("")) return ".frame("+accumulator+ ")\n";
@@ -318,7 +320,8 @@ public class IosMapAttribute {
 		}*/
 		
 		//if(!accumulator.equals("")) return ".frame("+accumulator+ ")\n";
-		return ".frame(minWidth: 0, maxWidth: .infinity, alignment: .topLeading)";
+	 
+			return ".frame(minWidth: 0, maxWidth: .infinity, alignment: .topLeading)";
 	}
 	
 	//this for padding tag

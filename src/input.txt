@@ -1,21 +1,12 @@
-<View style="background-color:#ff0000;">
-    <View style="background-color:#000000;">
-        <View>
-            <View>
-                <View style="width:match_parent;">
-                    <Text style="background-color:#ffff00;text-color: #ffffff;">extererere         </Text>
-                </View>
-            </View>
-        </View>
-        <Text style="background-color:#00ffff">sol sol text</Text>
-    </View>
-    <View>
-        <View style="alignment:top;orientation:horizontal;">
-            <Text style="background-color:#ffa500;text-color: #ffffff;text-size: 25;">sol sag sol text</Text>
-    	    <Text style="background-color:#ffa500;">sol sag sol text</Text>
-        </View>
-        <Text style="background-color:#d2691e;minWidth:200;width: 100;">bu sol sag text text</Text>
-        <Image style="background-color:#d2691e;minWidth:200;width: 100;">trya.png</Text>
-        <Button style="background-color:#d2691e;minWidth:200;width: 100;text-size: 20;width:40;padding: 1,1,1,1;>dda</Button>
-    </View>
+
+
+
+
+
+<View style="background-color:#68ABD9;">
+	<View style="orientation:vertical;width:match_parent;padding:10,10,10,10;">
+		<View style="width:match_parent;alignment:center;height: 100;">
+			<Text>sdfsdf</Text>
+		</View>
+	</View>
 </View>

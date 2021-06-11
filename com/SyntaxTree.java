@@ -1,5 +1,6 @@
 package com;
 
+import java.util.Map;
 import java.util.Stack;
 import static com.TokenType.*;
 
@@ -133,9 +134,21 @@ public class SyntaxTree implements Runnable {
     			
     			this.ios_source += "} \n";
     			
-    			if(current.getChildren().get(i).getAttribute().getKeywords().containsKey("width"))
-    				if(current.getChildren().get(i).getAttribute().getKeywords().get("width").trim().equals("match_parent"))
-    					this.ios_source += ".frame(minWidth: 0, maxWidth: .infinity, alignment: .topLeading)\n";
+    			if(current.getChildren().get(i).getAttribute().getKeywords().containsKey("width")) {
+    				String str = "";
+    				Map<String, String> val = current.getChildren().get(i).getAttribute().getKeywords();
+    			 
+    				
+    				if(val.get("width").equals("match_parent"))
+    					this.ios_source += ".frame(minWidth: 0, maxWidth: .infinity,";
+    					
+    				if(val.get("alignment").equals("center"))
+    					this.ios_source += "alignment:.center)\n";
+    				else
+    					this.ios_source += "alignment:.topLeading)\n";
+    					
+    			}
+    				
     		
     		}
             	
