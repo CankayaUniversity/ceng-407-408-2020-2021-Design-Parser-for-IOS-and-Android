@@ -93,7 +93,7 @@ public class Lexer {
         }
 
         //attribute.addAttribute("width", "match_parent");
-        attribute.addAttribute("background-color", "#ffffff");
+        //attribute.addAttribute("background-color", "#ffffff");
 
         if (attribute != null)
             node.setAttribute(attribute);

@@ -1,117 +1,96 @@
 VStack{
-	ScrollView(.vertical){
 	VStack{
 
 	HStack(alignment: .top, spacing: 0){
 
-	Text("sdfsdf") 
-.background(Color(red:255.0/255, green:255.0/255, blue: 255.0/255))
-.font(.custom("", size:15 ))
+	HStack(alignment: .top, spacing: 0){
 
-.foregroundColor(Color(red:0.0/255, green:0.0/255, blue: 0.0/255))
-.frame(alignment: .leading)
+	Image("profile") .resizable()
+.scaledToFit()
+.frame(width: 50, height: 50)
 } 
 .frame(minWidth: 0, maxWidth: .infinity,alignment:.center)
-
-.background(Color(red:255.0/255, green:255.0/255, blue: 255.0/255))
-.frame(height: 100, alignment: .center)
+.frame(alignment: .center)
 
 	HStack(alignment: .top, spacing: 0){
 
-	Text("sdfsdf") 
-.background(Color(red:255.0/255, green:255.0/255, blue: 255.0/255))
-.font(.custom("", size:15 ))
+	Text("User nemesis's profile") .font(.custom("", size:22 ))
 
 .foregroundColor(Color(red:0.0/255, green:0.0/255, blue: 0.0/255))
 .frame(alignment: .leading)
 } 
 .frame(minWidth: 0, maxWidth: .infinity,alignment:.center)
-
-.background(Color(red:255.0/255, green:255.0/255, blue: 255.0/255))
-.frame(height: 100, alignment: .center)
-
-	HStack(alignment: .top, spacing: 0){
-
-	Text("sdfsdf") 
-.background(Color(red:255.0/255, green:255.0/255, blue: 255.0/255))
-.font(.custom("", size:15 ))
-
-.foregroundColor(Color(red:0.0/255, green:0.0/255, blue: 0.0/255))
-.frame(alignment: .leading)
+.frame(alignment: .center)
 } 
 .frame(minWidth: 0, maxWidth: .infinity,alignment:.center)
-
-.background(Color(red:255.0/255, green:255.0/255, blue: 255.0/255))
-.frame(height: 100, alignment: .center)
-
-	HStack(alignment: .top, spacing: 0){
-
-	Text("sdfsdf") 
-.background(Color(red:255.0/255, green:255.0/255, blue: 255.0/255))
-.font(.custom("", size:15 ))
-
-.foregroundColor(Color(red:0.0/255, green:0.0/255, blue: 0.0/255))
-.frame(alignment: .leading)
+.frame(height: 90, alignment: .center)
 } 
-.frame(minWidth: 0, maxWidth: .infinity,alignment:.center)
-
-.background(Color(red:255.0/255, green:255.0/255, blue: 255.0/255))
-.frame(height: 100, alignment: .center)
-
-	HStack(alignment: .top, spacing: 0){
-
-	Text("sdfsdf") 
-.background(Color(red:255.0/255, green:255.0/255, blue: 255.0/255))
-.font(.custom("", size:15 ))
-
-.foregroundColor(Color(red:0.0/255, green:0.0/255, blue: 0.0/255))
-.frame(alignment: .leading)
-} 
-.frame(minWidth: 0, maxWidth: .infinity,alignment:.center)
-
-.background(Color(red:255.0/255, green:255.0/255, blue: 255.0/255))
-.frame(height: 100, alignment: .center)
-
-	HStack(alignment: .top, spacing: 0){
-
-	Text("sdfsdf") 
-.background(Color(red:255.0/255, green:255.0/255, blue: 255.0/255))
-.font(.custom("", size:15 ))
-
-.foregroundColor(Color(red:0.0/255, green:0.0/255, blue: 0.0/255))
-.frame(alignment: .leading)
-} 
-.frame(minWidth: 0, maxWidth: .infinity,alignment:.center)
-
-.background(Color(red:255.0/255, green:255.0/255, blue: 255.0/255))
-.frame(height: 100, alignment: .center)
-
-	HStack(alignment: .top, spacing: 0){
-
-	Text("sdfsdf") 
-.background(Color(red:255.0/255, green:255.0/255, blue: 255.0/255))
-.font(.custom("", size:15 ))
-
-.foregroundColor(Color(red:0.0/255, green:0.0/255, blue: 0.0/255))
-.frame(alignment: .leading)
-} 
-.frame(minWidth: 0, maxWidth: .infinity,alignment:.center)
-
-.background(Color(red:255.0/255, green:255.0/255, blue: 255.0/255))
-.frame(height: 100, alignment: .center)
-} 
-
-.background(Color(red:255.0/255, green:255.0/255, blue: 255.0/255))
 .padding(.leading, 10).padding(.top, 10).padding(.trailing, 10).padding(.bottom, 10).frame(alignment: .center)
+
+	VStack{
+
+	HStack(alignment: .top, spacing: 0){
+
+	Text("Name: Johny") 
+.background(Color(red:255.0/255, green:255.0/255, blue: 255.0/255))
+.font(.custom("", size:15 ))
+
+.foregroundColor(Color(red:0.0/255, green:0.0/255, blue: 0.0/255))
+.frame(height: 50, alignment: .leading)
 } 
+.frame(minWidth: 0, maxWidth: .infinity,alignment:.center)
 
 .background(Color(red:255.0/255, green:255.0/255, blue: 255.0/255))
-.frame(height: 300)
+.padding(.leading, 0).padding(.top, 20).padding(.trailing, 0).padding(.bottom, 0).frame(alignment: .center)
+
+	HStack(alignment: .top, spacing: 0){
+
+	Text("Surname: CASH") 
+.background(Color(red:255.0/255, green:255.0/255, blue: 255.0/255))
+.font(.custom("", size:15 ))
+
+.foregroundColor(Color(red:0.0/255, green:0.0/255, blue: 0.0/255))
+.frame(height: 50, alignment: .leading)
+} 
+.frame(minWidth: 0, maxWidth: .infinity,alignment:.center)
+
+.background(Color(red:255.0/255, green:255.0/255, blue: 255.0/255))
+.padding(.leading, 0).padding(.top, 20).padding(.trailing, 0).padding(.bottom, 0).frame(alignment: .center)
+
+	HStack(alignment: .top, spacing: 0){
+
+	Text("Sex: Male") 
+.background(Color(red:255.0/255, green:255.0/255, blue: 255.0/255))
+.font(.custom("", size:15 ))
+
+.foregroundColor(Color(red:0.0/255, green:0.0/255, blue: 0.0/255))
+.frame(height: 50, alignment: .leading)
+} 
+.frame(minWidth: 0, maxWidth: .infinity,alignment:.center)
+
+.background(Color(red:255.0/255, green:255.0/255, blue: 255.0/255))
+.padding(.leading, 0).padding(.top, 20).padding(.trailing, 0).padding(.bottom, 0).frame(alignment: .center)
+
+	HStack(alignment: .top, spacing: 0){
+
+	Text("Age: 23") 
+.background(Color(red:255.0/255, green:255.0/255, blue: 255.0/255))
+.font(.custom("", size:15 ))
+
+.foregroundColor(Color(red:0.0/255, green:0.0/255, blue: 0.0/255))
+.frame(height: 50, alignment: .leading)
+} 
+.frame(minWidth: 0, maxWidth: .infinity,alignment:.center)
+
+.background(Color(red:255.0/255, green:255.0/255, blue: 255.0/255))
+.padding(.leading, 0).padding(.top, 20).padding(.trailing, 0).padding(.bottom, 0).frame(alignment: .center)
+} 
+.padding(.leading, 10).padding(.top, 10).padding(.trailing, 10).padding(.bottom, 10).frame(alignment: .top)
 
  Spacer() 
  } 
 
-.background(Color(red:104.0/255, green:171.0/255, blue: 217.0/255))
+.background(Color(red:13.0/255, green:121.0/255, blue: 110.0/255))
 .frame(alignment: .top)
 
  .flipsForRightToLeftLayoutDirection(true)

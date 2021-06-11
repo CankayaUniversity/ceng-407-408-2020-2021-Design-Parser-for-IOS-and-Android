@@ -3,30 +3,35 @@
 
 
 
-<View style="background-color:#68ABD9;">
-	<ScrollView style="height:300;">
-		<View style="orientation:vertical;padding:10,10,10,10;alignment:center;">
-			<View style="width:match_parent;alignment:center;height: 100;">
-				<Text>sdfsdf</Text>
+<View style="background-color:#0d796e;">
+ 	<View style="orientation:vertical;padding:10,10,10,10;alignment:center;">
+		<View style="width:match_parent;alignment:center;height:90;">
+		
+			<View style="width:match_parent;alignment:center;">
+				<Image style="width:50;height:50;>profile</Image>
 			</View>
-			<View style="width:match_parent;alignment:center;height: 100;">
-				<Text>sdfsdf</Text>
+			<View style="width:match_parent;alignment:center;">
+				<Text style="text-size:22;">User nemesis's profile</Text>
 			</View>
-			<View style="width:match_parent;alignment:center;height: 100;">
-				<Text>sdfsdf</Text>
-			</View>
-			<View style="width:match_parent;alignment:center;height: 100;">
-				<Text>sdfsdf</Text>
-			</View>
-			<View style="width:match_parent;alignment:center;height: 100;">
-				<Text>sdfsdf</Text>
-			</View>
-			<View style="width:match_parent;alignment:center;height: 100;">
-				<Text>sdfsdf</Text>
-			</View>
-			<View style="width:match_parent;alignment:center;height: 100;">
-				<Text>sdfsdf</Text>
-			</View>
+		
 		</View>
-	</ScrollView>
+	</View>
+	<View style="orientation:vertical;padding:10,10,10,10;">
+		<View style="width:match_parent;background-color:#ffffff;alignment:center;padding:0,20,0,0;">
+			<Text style="background-color:#ffffff;text-color:#000000;height:50;">Name: Johny</Text>
+		</View>
+		
+		<View style="width:match_parent;background-color:#ffffff;alignment:center;padding:0,20,0,0;">
+			<Text style="background-color:#ffffff;text-color:#000000;height:50;">Surname: CASH</Text>
+		</View>
+		
+		<View style="width:match_parent;background-color:#ffffff;alignment:center;padding:0,20,0,0;">
+			<Text style="background-color:#ffffff;text-color:#000000;height:50;">Sex: Male</Text>
+		</View>
+		
+		<View style="width:match_parent;background-color:#ffffff;alignment:center;padding:0,20,0,0;">
+			<Text style="background-color:#ffffff;text-color:#000000;height:50;">Age: 23</Text>
+		</View>
+	</View>
+
 </View>
