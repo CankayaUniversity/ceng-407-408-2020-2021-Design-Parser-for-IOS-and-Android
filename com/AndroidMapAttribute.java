@@ -22,7 +22,7 @@ public class AndroidMapAttribute{
         	gravityKeys.put("rightBottom", "RIGHT | GRAVITY.BOTTOM");
         	gravityKeys.put("horizontal", "HORIZONTAL");
         	gravityKeys.put("vertical", "VERTICAL");
-        	gravityKeys.put("match_parent", "0.5 * ViewGroup.LayoutParams.MATCH_PARENT");
+        	gravityKeys.put("match_parent", "0.4 * ViewGroup.LayoutParams.MATCH_PARENT");
         	gravityKeys.put(".png", "");
         }
         private String str;
@@ -100,8 +100,8 @@ public class AndroidMapAttribute{
         //VIEW
         keywords.put("VIEW_background-color" , new KeywordAdapter("setBackgroundColor(Color.parseColor(", 2));
         keywords.put("VIEW_alignment" , new KeywordAdapter(false, true, "setGravity(Gravity.", 1));
-        keywords.put("VIEW_width" , new KeywordAdapter(false, true, "getLayoutParams().width = (int) (2 * ", 1));
-        keywords.put("VIEW_height" , new KeywordAdapter(false, true, "getLayoutParams().height = (int) (2 * ", 1));
+        keywords.put("VIEW_width" , new KeywordAdapter(false, true, "getLayoutParams().width = (int) (2.5 * ", 1));
+        keywords.put("VIEW_height" , new KeywordAdapter(false, true, "getLayoutParams().height = (int) (4 * ", 1));
         keywords.put("VIEW_minWidth" , new KeywordAdapter(false, "setMinimumWidth(", 1));
         keywords.put("VIEW_minHeight" , new KeywordAdapter(false, "setMinimumWidth(", 1));
         keywords.put("VIEW_orientation" , new KeywordAdapter(false, true, "setOrientation(LinearLayout.", 1));
@@ -110,8 +110,8 @@ public class AndroidMapAttribute{
         //SCROLLVIEW
         keywords.put("SCROLLVIEW_background-color" , new KeywordAdapter("setBackgroundColor(Color.parseColor(", 2));
         keywords.put("SCROLLVIEW_alignment" , new KeywordAdapter(false, true, "setGravity(Gravity.", 1));
-        keywords.put("SCROLLVIEW_width" , new KeywordAdapter(false, true, "getLayoutParams().width = (int) (2 * ", 1));
-        keywords.put("SCROLLVIEW_height" , new KeywordAdapter(false, true, "getLayoutParams().height = (int) (2 * ", 1));
+        keywords.put("SCROLLVIEW_width" , new KeywordAdapter(false, true, "getLayoutParams().width = (int) (2.5 * ", 1));
+        keywords.put("SCROLLVIEW_height" , new KeywordAdapter(false, true, "getLayoutParams().height = (int) (4 * ", 1));
         keywords.put("SCROLLVIEW_minWidth" , new KeywordAdapter(false, "setMinimumWidth(", 1));
         keywords.put("SCROLLVIEW_minHeight" , new KeywordAdapter(false, "setMinimumWidth(", 1));
         keywords.put("SCROLLVIEW_padding" , new KeywordAdapter(false, true, "setPadding(", 1));
@@ -122,8 +122,8 @@ public class AndroidMapAttribute{
         keywords.put("TEXT_textsize" , new KeywordAdapter(false, "setTextSize(", 1));
         keywords.put("TEXT_text-color" , new KeywordAdapter("setTextColor(Color.parseColor(", 2));
         keywords.put("TEXT_alignment" , new KeywordAdapter(false, true, "setGravity(Gravity.", 1));
-        keywords.put("TEXT_width" , new KeywordAdapter(false, true, "getLayoutParams().width = (int) (2 * ", 1));
-        keywords.put("TEXT_height" , new KeywordAdapter(false, true, "getLayoutParams().height = (int) (2 * ", 1));
+        keywords.put("TEXT_width" , new KeywordAdapter(false, true, "getLayoutParams().width = (int) (2.5 * ", 1));
+        keywords.put("TEXT_height" , new KeywordAdapter(false, true, "getLayoutParams().height = (int) (4 * ", 1));
         keywords.put("TEXT_minWidth" , new KeywordAdapter(false, "setMinimumWidth(", 1));
         keywords.put("TEXT_minHeight" , new KeywordAdapter(false, "setMinimumWidth(", 1));
         
@@ -133,8 +133,8 @@ public class AndroidMapAttribute{
         keywords.put("BUTTON_textsize" , new KeywordAdapter(false, "setTextSize(", 1));
         keywords.put("BUTTON_text-color" , new KeywordAdapter("setTextColor(Color.parseColor(", 2));
         keywords.put("BUTTON_alignment" , new KeywordAdapter(false, true, "setGravity(Gravity.", 1));
-        keywords.put("BUTTON_width" , new KeywordAdapter(false, true, "getLayoutParams().width = (int) (2 * ", 1));
-        keywords.put("BUTTON_height" , new KeywordAdapter(false, true, "getLayoutParams().height = (int) (2 * ", 1));
+        keywords.put("BUTTON_width" , new KeywordAdapter(false, true, "getLayoutParams().width = (int) (2.5 * ", 1));
+        keywords.put("BUTTON_height" , new KeywordAdapter(false, true, "getLayoutParams().height = (int) (4 * ", 1));
         keywords.put("BUTTON_minWidth" , new KeywordAdapter(false, "setMinimumWidth(", 1));
         keywords.put("BUTTON_minHeight" , new KeywordAdapter(false, "setMinimumWidth(", 1));
         
@@ -143,8 +143,8 @@ public class AndroidMapAttribute{
         keywords.put("IMAGE_src" , new KeywordAdapter(false, true, "setImageResource(R.drawable.", 1));
         keywords.put("IMAGE_text-color" , new KeywordAdapter("setTextColor(Color.parseColor(", 2));
         keywords.put("IMAGE_alignment" , new KeywordAdapter(false, true, "setGravity(Gravity.", 1));
-        keywords.put("IMAGE_width" , new KeywordAdapter(false, true, "getLayoutParams().width = (int) (2 * ", 1));
-        keywords.put("IMAGE_height" , new KeywordAdapter(false, true, "getLayoutParams().height = (int) (2 * ", 1));
+        keywords.put("IMAGE_width" , new KeywordAdapter(false, true, "getLayoutParams().width = (int) (2.5 * ", 1));
+        keywords.put("IMAGE_height" , new KeywordAdapter(false, true, "getLayoutParams().height = (int) (4 * ", 1));
         keywords.put("IMAGE_minWidth" , new KeywordAdapter(false, "setMinimumWidth(", 1));
         keywords.put("IMAGE_minHeight" , new KeywordAdapter(false, "setMinimumWidth(", 1));
     }
