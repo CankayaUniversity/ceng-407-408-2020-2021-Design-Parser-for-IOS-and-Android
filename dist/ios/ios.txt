@@ -1,6 +1,90 @@
 VStack{
-	ScrollView(.vertical)
+	ScrollView(.vertical){
 	VStack{
+
+	HStack(alignment: .top, spacing: 0){
+
+	Text("sdfsdf") 
+.background(Color(red:255.0/255, green:255.0/255, blue: 255.0/255))
+.font(.custom("", size:15 ))
+
+.foregroundColor(Color(red:0.0/255, green:0.0/255, blue: 0.0/255))
+.frame(alignment: .leading)
+} 
+.frame(minWidth: 0, maxWidth: .infinity,alignment:.center)
+
+.background(Color(red:255.0/255, green:255.0/255, blue: 255.0/255))
+.frame(height: 100, alignment: .center)
+
+	HStack(alignment: .top, spacing: 0){
+
+	Text("sdfsdf") 
+.background(Color(red:255.0/255, green:255.0/255, blue: 255.0/255))
+.font(.custom("", size:15 ))
+
+.foregroundColor(Color(red:0.0/255, green:0.0/255, blue: 0.0/255))
+.frame(alignment: .leading)
+} 
+.frame(minWidth: 0, maxWidth: .infinity,alignment:.center)
+
+.background(Color(red:255.0/255, green:255.0/255, blue: 255.0/255))
+.frame(height: 100, alignment: .center)
+
+	HStack(alignment: .top, spacing: 0){
+
+	Text("sdfsdf") 
+.background(Color(red:255.0/255, green:255.0/255, blue: 255.0/255))
+.font(.custom("", size:15 ))
+
+.foregroundColor(Color(red:0.0/255, green:0.0/255, blue: 0.0/255))
+.frame(alignment: .leading)
+} 
+.frame(minWidth: 0, maxWidth: .infinity,alignment:.center)
+
+.background(Color(red:255.0/255, green:255.0/255, blue: 255.0/255))
+.frame(height: 100, alignment: .center)
+
+	HStack(alignment: .top, spacing: 0){
+
+	Text("sdfsdf") 
+.background(Color(red:255.0/255, green:255.0/255, blue: 255.0/255))
+.font(.custom("", size:15 ))
+
+.foregroundColor(Color(red:0.0/255, green:0.0/255, blue: 0.0/255))
+.frame(alignment: .leading)
+} 
+.frame(minWidth: 0, maxWidth: .infinity,alignment:.center)
+
+.background(Color(red:255.0/255, green:255.0/255, blue: 255.0/255))
+.frame(height: 100, alignment: .center)
+
+	HStack(alignment: .top, spacing: 0){
+
+	Text("sdfsdf") 
+.background(Color(red:255.0/255, green:255.0/255, blue: 255.0/255))
+.font(.custom("", size:15 ))
+
+.foregroundColor(Color(red:0.0/255, green:0.0/255, blue: 0.0/255))
+.frame(alignment: .leading)
+} 
+.frame(minWidth: 0, maxWidth: .infinity,alignment:.center)
+
+.background(Color(red:255.0/255, green:255.0/255, blue: 255.0/255))
+.frame(height: 100, alignment: .center)
+
+	HStack(alignment: .top, spacing: 0){
+
+	Text("sdfsdf") 
+.background(Color(red:255.0/255, green:255.0/255, blue: 255.0/255))
+.font(.custom("", size:15 ))
+
+.foregroundColor(Color(red:0.0/255, green:0.0/255, blue: 0.0/255))
+.frame(alignment: .leading)
+} 
+.frame(minWidth: 0, maxWidth: .infinity,alignment:.center)
+
+.background(Color(red:255.0/255, green:255.0/255, blue: 255.0/255))
+.frame(height: 100, alignment: .center)
 
 	HStack(alignment: .top, spacing: 0){
 
@@ -22,6 +106,7 @@ VStack{
 } 
 
 .background(Color(red:255.0/255, green:255.0/255, blue: 255.0/255))
+.frame(height: 300)
 
  Spacer() 
  } 
